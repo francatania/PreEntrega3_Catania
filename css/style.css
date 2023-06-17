@@ -1,0 +1,269 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap');
+
+/* colores */
+:root{
+    --color-main-dark: #001011;
+    --color-white: #EAF1E4;
+    --color-white-darker: #d5ddce;
+    --color-orange: #E78823;
+    --color-orange-light: #f89933;
+    --color-error: #EC0B43;
+    --color-green: #21C063;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
+}
+
+.nav-container{
+    height: 70vh;
+    background-image: url(../assets/img/portada3.jpg);
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;
+    font-size: 20px;
+    color: var(--color-white);
+    overflow: hidden;
+}
+
+.listMenu {
+    display: flex;
+    gap: 25px;
+}
+
+.portada {
+    width: 100%;
+    height: 60vh;
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}
+
+.titulo {
+    grid-column: 4/6;
+    grid-row: 2/4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white)
+}
+
+.titulo h1 {
+    font-size: 50px;
+    /* text-shadow: white 2px 2px 2px; */
+}
+
+.titulo p {
+    font-size: 20px;
+}
+
+.main{
+    background-color: var(--color-white);
+}
+
+.autos-container {
+    width: 70%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-around;
+    row-gap: 100px;
+    padding: 100px;
+    background-color: var(--color-white);
+}
+
+.card-error{
+    background-color: #ff0000;
+    grid-column: 2;
+    text-align: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    height: 350px;
+    width: 350px;
+    border-radius: 20px;
+    box-shadow: black 1px 2px 2px ;
+    transition: ease 0.5s;
+    background-color: var(--color-white-darker);
+    color: var(--color-main-dark);
+}
+
+.img-card img{
+    height: 200px;
+    width: 100%;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.card h2 {
+    text-align: center;
+}
+
+.titulo-card{
+    font-size: 30px;
+    margin-top: 25px;
+}
+
+.precio-card{
+    font-size: 20px;
+}
+
+.button-container{
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    width: 100%;
+    transition: ease 0.5s;
+
+}
+
+.button-add{
+    background-color: var();
+    font-size: 20px;
+    text-align: center;
+    padding: 5px;
+    border-radius: 0px;
+    transition: ease 0.5s;
+    color: var(--color-main-dark);
+    background-color: var(--color-orange);
+    width: 100%;
+}
+
+.button-add:hover{
+    transition: ease 0.5s;
+    background-color: var(--color-orange-light);
+    cursor: pointer;
+}
+
+footer {
+    background-color: grey;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 220px;
+    padding-top: 20px;
+    overflow: hidden;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+
+.listRedes {
+    display: flex;
+    gap: 20px;
+}
+
+.redes-icon i{
+    font-size: 30px;
+    list-style: none;
+    text-decoration: none;
+    color: #141414;
+}
+
+/* carrito */
+
+/* .section-cart{
+    background-color: salmon;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cart-container{
+    width: 40%;
+    height: 400px;
+    text-align: center;
+
+}
+
+.thead tr{
+    border: #141414 solid 1px;
+}
+
+.table-cart{
+    border: #141414 solid 1px;
+    width: 100%;
+    margin-top: 60px;
+    padding: 20px;
+}
+
+.volver-index{
+    height: 50px;
+} */
+
+.cart-container{
+    background-color: salmon;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.card-carrito{
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    background-color: bisque;
+    border-radius: 10px;
+    width: 70%;
+}
+
+.img-card-carrito{
+    height: 120px;
+    width: 200px;
+    overflow: hidden;
+}
+
+.imgCarrito{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.div-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tittle-card{
+    font-size: 16px;
+}
+
+.auto-prop{
+    font-size: 25px;
+}
+
+
+/* Media queries */
+
+@media only screen and (max-width:1650px) {
+    .autos-container {
+        width: 90%;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        justify-content: space-around;
+        row-gap: 120px ;
+    }
+}
