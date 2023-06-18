@@ -1,6 +1,7 @@
 
 const cart = document.querySelector(".cart-container")
 const total = document.querySelector(".total")
+const volverBtn = document.querySelector(".volver-button")
 
 
 function retornarFilaCarrito(auto){
@@ -13,19 +14,31 @@ function retornarFilaCarrito(auto){
                 </div>
                 <div class="cantidad div-card">
                     <h3 class="tittle-card" >Cantidad</h3>
-                    <h3 class="auto-prop"></h3>
+                    <h3 class="auto-prop">${auto.cantidad}</h3>
                 </div>
                 <div class="precio div-card">
                     <h3 class="tittle-card" >Monto</h3>
-                    <h3 class="auto-prop">${auto.precio}</h3>
+                    <h3 class="auto-prop">$ ${auto.precio * auto.cantidad}</h3>
                 </div>
-                <div class="borrar div-card">
-                <button><h3>❌</h3></button>
+                <div class="div-card">
+                    <button class="borrar" id="${auto.id}"><h3>❌</h3></button>
                 </div>
             </div>`
 }
 
+function retornarCardCarritoVacio(){
+    return `<div class="card-error">
+                <h2>🔍</h2>
+                <h2>No hay productos en el carrito por el momento</h2>
+            </div>`
+}
 
+function retornarCardCompra(){
+    return `<div class="card-success">
+                <h2>✔</h2>
+                <h2>Gracias por tu compra!</h2>
+            </div>`
+}
 
 function retornarTotal(){
     let totalPrecio = 0
@@ -40,28 +53,45 @@ function actualizarCarrito(){
         carrito.forEach(productoCarrito =>{
             cart.innerHTML += retornarFilaCarrito(productoCarrito)
         })
-        // total.textContent = retornarTotal()
         activarBotonBorrar()
+        activarBotonCompra()
+    }
+    else{
+        cart.innerHTML = retornarCardCarritoVacio()
     }
 }
-
 
 function activarBotonBorrar(){
     const borrarCarrito = document.querySelectorAll(".borrar")
     for(let boton of borrarCarrito){
         boton.addEventListener("click", e => {
-            const autoBorrar = carrito.findIndex(producto => producto.id === parseInt(e.target.id))
-            carrito.splice(autoBorrar, 1)
+            const idBoton = parseInt(e.currentTarget.id)
+            console.log(idBoton)
+            const autoBorrar = carrito.findIndex(producto => producto.id === idBoton)
+            if(autoBorrar != -1){
+                if(carrito[autoBorrar].cantidad > 1){
+                    carrito[autoBorrar].cantidad--
+                }
+                else{
+                    carrito.splice(autoBorrar, 1)
+                }
+            }
             console.table(carrito)
             localStorage.setItem("miCarrito", JSON.stringify(carrito))
-            cart.innerHTML = ""
-            carrito.forEach(productoCarrito =>{
-                cart.innerHTML += retornarFilaCarrito(productoCarrito)
-            })
-            activarBotonBorrar()
+            actualizarCarrito()
         })
     }
 }
+
+function activarBotonCompra(){
+    const botonCompra = document.querySelector(".comprar-button")
+    botonCompra.addEventListener("click", ()=>{
+        cart.innerHTML = ""
+        cart.innerHTML += retornarCardCompra()
+        localStorage.clear()
+    })
+}
+
 
 actualizarCarrito()
 
