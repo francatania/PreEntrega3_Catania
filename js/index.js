@@ -13,8 +13,10 @@ class Autos {
     }
 }
 
+
 const autosContainer = document.querySelector(".autos-container")
 const numeroCart = document.querySelector(".carrito")
+
 
 function retornarCard(auto){
     return `<div class="card">
@@ -30,39 +32,41 @@ function retornarCard(auto){
 }
 
 function retornarError(){
-    return `<div class="card-error">
+    return `<div class="card-error card-error-autosContainer">
                 <h2>🔍</h2>
-                <h2>Houston, tenemos un problema.</h2>
-                <h3>No encontramos productos para mostrar.</h3>
-                <h4>Intenta de nuevo en unos instantes...</h4>
+                <h2>No encontramos productos para mostrar.</h2>
+                <h4>Intenta de nuevo más tarde.</h4>
             </div>`
 }
 
 
-function agregarProducto(){
-    autosContainer.innerHTML = ""
-    autos.length > 0 ? autos.forEach((auto) => autosContainer.innerHTML += retornarCard(auto)) : autosContainer.innerHTML += retornarError()
-    
-    activarBotones()
+function aumentarCantidadAuto(id){
+    const index = carrito.findIndex(auto => auto.id === id)
+    carrito[index].cantidad++
 }
 
-agregarProducto()
+function agregarPrimerUnidadDeAuto(auto){
+    auto.cantidad = 1
+    carrito.push(auto)
+}
 
 function activarBotones(){
     const buttons = document.querySelectorAll(".button-add")
     for(let button of buttons){
         button.addEventListener("click", e =>{
-            const autoElegido = autos.find(auto => auto.id === parseInt(e.target.id))
-            if(carrito.some(auto=> auto.id === parseInt(e.target.id))){
-                const index = carrito.findIndex(auto => auto.id === parseInt(e.target.id))
-                carrito[index].cantidad++
-            }
-            else{
-                autoElegido.cantidad = 1
-                carrito.push(autoElegido)
-            }
-            console.log(carrito)
+            let idBoton = parseInt(e.target.id)
+            let autoElegido = autos.find(auto => auto.id === idBoton)
+            carrito.some(auto=> auto.id === idBoton) ? aumentarCantidadAuto(idBoton) : agregarPrimerUnidadDeAuto(autoElegido)
             localStorage.setItem("miCarrito", JSON.stringify(carrito))
         })
     }
 }
+
+function agregarProducto(){
+    autosContainer.innerHTML = ""
+    autos.length > 0 ? autos.forEach((auto) => autosContainer.innerHTML += retornarCard(auto)) : autosContainer.innerHTML += retornarError()
+    activarBotones()
+}
+
+agregarProducto()
+

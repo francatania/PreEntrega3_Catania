@@ -13,3 +13,5 @@ const autos = [{ id: 1327, marca: "Peugeot", nombre: "208", precio: 7500000, sto
 { id: 1333, marca: "VW", nombre: "Golf", precio: 8300000, stock: 15, imagen: "./assets/img/golf.jpg" },
 { id: 1334, marca: "VW", nombre: "Fox", precio: 4300000, stock: 20, imagen: "./assets/img/fox.jpg"},
 { id: 1335, marca: "FIAT", nombre: "Mobi", precio: 5300000, stock: 28, imagen: "./assets/img/mobi.jpg"}]
+
+

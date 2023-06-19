@@ -100,6 +100,11 @@ a{
     border-radius: 20px;
 }
 
+.card-error-autosContainer{
+    grid-column: 1/4;
+    overflow: hidden;
+}
+
 .card-success{
     background-color: var(--color-green);
     height: 200px;
@@ -256,7 +261,7 @@ footer {
 }
 
 .auto-prop{
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .cart-title{
@@ -264,7 +269,13 @@ footer {
     justify-content: center;
     margin-top: 30px;
     margin-bottom: 30px;
-    font-size: 30px;
+    font-size: 20px;
+}
+
+.card-buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
 }
 
 .botones-cart{
