@@ -1,22 +1,6 @@
-let username = ""
-let password = ""
-let usuarioLogueado = false
-
-class Autos {
-    constructor(id, marca, nombre, precio, stock, imagen) {
-        this.id = id
-        this.marca = marca
-        this.nombre = nombre
-        this.precio = precio
-        this.stock = stock
-        this.imagen = imagen
-    }
-}
-
 
 const autosContainer = document.querySelector(".autos-container")
 const numeroCart = document.querySelector(".carrito")
-
 
 function retornarCard(auto){
     return `<div class="card">
@@ -39,7 +23,6 @@ function retornarError(){
             </div>`
 }
 
-
 function aumentarCantidadAuto(id){
     const index = carrito.findIndex(auto => auto.id === id)
     carrito[index].cantidad++
@@ -50,6 +33,13 @@ function agregarPrimerUnidadDeAuto(auto){
     carrito.push(auto)
 }
 
+function avisarProductoAgregadoCarrito(elemento){
+    elemento.textContent = "Agregado ✔"
+    setTimeout(()=>{
+        elemento.textContent = "Agregar al carrito"
+    }, 2000)
+}
+
 function activarBotones(){
     const buttons = document.querySelectorAll(".button-add")
     for(let button of buttons){
@@ -58,6 +48,7 @@ function activarBotones(){
             let autoElegido = autos.find(auto => auto.id === idBoton)
             carrito.some(auto=> auto.id === idBoton) ? aumentarCantidadAuto(idBoton) : agregarPrimerUnidadDeAuto(autoElegido)
             localStorage.setItem("miCarrito", JSON.stringify(carrito))
+            avisarProductoAgregadoCarrito(button)
         })
     }
 }

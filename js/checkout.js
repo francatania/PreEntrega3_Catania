@@ -19,7 +19,6 @@ class Financiador {
     }
 }
 
-
 function retornarFilaCarrito(auto){
     return `<div class="card-carrito">
                 <div class="img-card-carrito">
@@ -89,34 +88,6 @@ function retornarFormularioFinanciadorCalculado(auto, cuota){
             </div>`
 }
 
-
-function activarBotonFinanciador(){
-    const financiadorBtn = document.querySelectorAll(".financiador-button")
-    for(let boton of financiadorBtn){
-        boton.addEventListener("click", (e)=>{
-            let botonId = parseInt(e.currentTarget.id)
-            let autoFinanciado = carrito.find(auto => auto.id === botonId)
-            cart.innerHTML = ""
-            cart.innerHTML += retornarFormularioFinanciador(autoFinanciado)
-            activarBotonCalcularCuotas(autoFinanciado)
-        })
-    }
-}
-
-function activarBotonCalcularCuotas(auto){
-    const inputCuotas = document.querySelector("#inputCuotas")
-    const calcularBtn = document.querySelector("#calcular")
-    calcularBtn.addEventListener("click", ()=>{
-        const cantidadCuotas = inputCuotas.value
-        const autoACalcular = new Financiador(auto.precio, cantidadCuotas)
-        const valorCuota = autoACalcular.calcularCuotas()
-        cart.innerHTML = ""
-        cart.innerHTML += retornarFormularioFinanciadorCalculado(auto, valorCuota)
-        activarBotonCalcularCuotas(auto)
-    })
-
-}
-
 function retornarCardCarritoVacio(){
     return `<div class="card-error">
                 <h2>🔍</h2>
@@ -131,44 +102,55 @@ function retornarCardCompra(){
             </div>`
 }
 
-function retornarTotal(){
-    let totalPrecio = 0
-    carrito.forEach(auto => {totalPrecio += auto.precio})
-    console.log(totalPrecio)
-    return totalPrecio
+
+function reemplazarHTMLCarrito(funcion){
+    cart.innerHTML = ""
+    cart.innerHTML += funcion
 }
 
-function actualizarCarrito(){
-    if(carrito.length >0) {
-        cart.innerHTML = ""
-        carrito.forEach(productoCarrito =>{
-            cart.innerHTML += retornarFilaCarrito(productoCarrito)
+function retornarAutoElegido(e){
+    let botonId = parseInt(e.currentTarget.id)
+    let autoElegido = carrito.find(auto => auto.id === botonId)
+    return autoElegido
+}
+
+function retornarValorCuota(input, auto){
+    const cantidadCuotas = input.value
+    const autoACalcular = new Financiador(auto.precio, cantidadCuotas)
+    const valorCuota = autoACalcular.calcularCuotas()
+    return valorCuota
+}
+
+function activarBotonCalcularCuotas(auto){
+    const inputCuotas = document.querySelector("#inputCuotas")
+    const calcularBtn = document.querySelector("#calcular")
+    calcularBtn.addEventListener("click", ()=>{
+        reemplazarHTMLCarrito(retornarFormularioFinanciadorCalculado(auto, retornarValorCuota(inputCuotas, auto)))
+        activarBotonCalcularCuotas(auto)
+    })
+}
+
+function activarBotonFinanciador(){
+    const financiadorBtn = document.querySelectorAll(".financiador-button")
+    for(let boton of financiadorBtn){
+        boton.addEventListener("click", (e)=>{
+            reemplazarHTMLCarrito(retornarFormularioFinanciador(retornarAutoElegido(e)))
+            activarBotonCalcularCuotas(retornarAutoElegido(e))
         })
-        activarBotonBorrar()
-        activarBotonCompra()
-        activarBotonFinanciador()
     }
-    else{
-        cart.innerHTML = retornarCardCarritoVacio()
-    }
+}
+
+function borrarProductoCarrito(e){
+    const idBoton = parseInt(e.currentTarget.id)
+    const autoBorrar = carrito.findIndex(producto => producto.id === idBoton)
+    autoBorrar != -1 && carrito[autoBorrar].cantidad > 1 ? carrito[autoBorrar].cantidad-- : carrito.splice(autoBorrar, 1) 
 }
 
 function activarBotonBorrar(){
     const borrarCarrito = document.querySelectorAll(".borrar")
     for(let boton of borrarCarrito){
         boton.addEventListener("click", e => {
-            const idBoton = parseInt(e.currentTarget.id)
-            console.log(idBoton)
-            const autoBorrar = carrito.findIndex(producto => producto.id === idBoton)
-            if(autoBorrar != -1){
-                if(carrito[autoBorrar].cantidad > 1){
-                    carrito[autoBorrar].cantidad--
-                }
-                else{
-                    carrito.splice(autoBorrar, 1)
-                }
-            }
-            console.table(carrito)
+            borrarProductoCarrito(e)
             localStorage.setItem("miCarrito", JSON.stringify(carrito))
             actualizarCarrito()
         })
@@ -178,12 +160,27 @@ function activarBotonBorrar(){
 function activarBotonCompra(){
     const botonCompra = document.querySelector(".comprar-button")
     botonCompra.addEventListener("click", ()=>{
-        cart.innerHTML = ""
-        cart.innerHTML += retornarCardCompra()
+        reemplazarHTMLCarrito(retornarCardCompra())
         localStorage.clear()
     })
 }
 
+function actualizarHTMLProductosCarrito(){
+    cart.innerHTML = ""
+    carrito.forEach(productoCarrito => cart.innerHTML += retornarFilaCarrito(productoCarrito))
+}
+
+function actualizarCarrito(){
+    if(carrito.length >0) {
+        actualizarHTMLProductosCarrito()
+        activarBotonBorrar()
+        activarBotonCompra()
+        activarBotonFinanciador()
+    }
+    else{
+        cart.innerHTML = retornarCardCarritoVacio()
+    }
+}
 
 actualizarCarrito()
 
