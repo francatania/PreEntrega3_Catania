@@ -110,6 +110,7 @@ a{
     height: 200px;
     padding: 50px;
     text-align: center;
+    align-items: center;
     border-radius: 20px;
 }
 
@@ -215,6 +216,9 @@ footer {
 
 .cart-container-container{
     height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .cart-container{
@@ -224,10 +228,9 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 30px;
-    min-height: 300px;
     width: 70%;
-    border:#001011 2px solid;
-    border-radius: 10px;
+    /* border:#001011 2px solid;
+    border-radius: 10px; */
     margin: auto;
 }
 
@@ -291,6 +294,10 @@ footer {
 /* Media queries */
 
 @media only screen and (max-width:1650px) {
+    .cart-container-container{
+        height: 350px;
+    }
+    
     .autos-container {
         width: 90%;
         grid-template-columns: repeat(3, 1fr);
