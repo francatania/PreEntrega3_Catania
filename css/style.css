@@ -21,6 +21,15 @@
     font-family: 'Roboto', sans-serif;
 }
 
+
+.swal2-icon{
+    overflow: hidden;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+    background-color: var(--color-orange)!important;
+}
+
 a{
     text-decoration: none;
     color: var(--color-white);

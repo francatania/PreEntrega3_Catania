@@ -162,8 +162,13 @@ function activarBotonCompra(){
     botonCompra.addEventListener("click", ()=>{
         reemplazarHTMLCarrito(retornarCardCompra())
         localStorage.clear()
-    })
-}
+        Swal.fire({
+            icon: 'success',
+            title: '¡Muchas gracias por tu compra!',
+            confirmButtonText:
+                '<a href="../index.html">Ok</a>'
+          });
+    })}
 
 function actualizarHTMLProductosCarrito(){
     cart.innerHTML = ""

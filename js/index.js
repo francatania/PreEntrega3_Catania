@@ -34,10 +34,24 @@ function agregarPrimerUnidadDeAuto(auto){
 }
 
 function avisarProductoAgregadoCarrito(elemento){
-    elemento.textContent = "Agregado ✔"
-    setTimeout(()=>{
-        elemento.textContent = "Agregar al carrito"
-    }, 2000)
+    // elemento.textContent = "Agregado ✔"
+    // setTimeout(()=>{
+    //     elemento.textContent = "Agregar al carrito"
+    // }, 2000)
+    Toastify({
+        text: "Agregado al carrito!",
+        duration: 1000,
+        // destination: ,
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "#21C063",
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
 }
 
 function activarBotones(){
