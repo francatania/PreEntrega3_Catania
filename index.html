@@ -22,15 +22,16 @@
             </div>
             <div class="menu">
                 <ul class="listMenu">
-                    <li class="home">Home</li>
                     <li class="modelos">Modelos</li>
                     <li class="contacto">Contacto</li>
                 </ul>
             </div>
             <div class="buscador">
-                <i class="fa-solid fa-magnifying-glass"></i>
+                
             </div>
-            <div class="carrito"><a href="carrito.html">Mi carrito <i class="fa-solid fa-cart-shopping"></i></a></div>
+            <div class="carrito" id="numeroCarrito">
+                <a href="carrito.html">Mi carrito <i class="fa-solid fa-cart-shopping"></i><span></span></a>
+            </div>
         </div>
         
         <div class="portada">
@@ -41,6 +42,37 @@
     </section>
 
     <section class="main">
+        <div class="filtrosContainer-Container">
+            <div class="filtrosContainer">
+                <div class="input-filtro">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input class="buscador-filtro" type="text" placeholder="Buscá por nombre o marca...">
+                </div>
+                <div class="rango-precio-container">
+                    <div class="min-container range-wraper">
+                        <div class="field-min field">
+                            <span>Min</span>
+                            <input type="number" class="input-min" value="500000">
+                        </div>
+                        <div class="slider-min slider">
+                            <input type="range" step="100000" class="range-min" min="200000" max="4999999" value="500000">
+                        </div>
+                    </div>
+                    <div class="max-container range-wraper">
+                        <div class="field-max field">
+                            <span>Max</span>
+                            <input type="number" class="input-max" value="5000000">
+                        </div>
+                        <div class="slider-max slider">
+                            <input type="range" step="100000" class="range-max" min="5000000" max="9000000" value="7000000">
+                        </div>
+                    </div>
+                </div>
+                <div class="submit-filtroContainer">
+                    <button class="submit-filtro" type="submit">Buscar</button>
+                </div>
+            </div>
+        </div>
 
         <div class="autos-container">
 
