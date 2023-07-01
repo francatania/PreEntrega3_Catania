@@ -9,7 +9,9 @@
     --color-orange: #E78823;
     --color-orange-light: #f89933;
     --color-error: #EC0B43;
+    --color-error-light: #fc0241;
     --color-green: #21C063;
+    --color-green-light :#5fda92;
 }
 
 
@@ -21,6 +23,9 @@
     font-family: 'Roboto', sans-serif;
 }
 
+button{
+    font-family: 'Roboto', sans-serif;
+}
 
 .swal2-icon{
     overflow: hidden;
@@ -35,7 +40,7 @@ a{
     color: var(--color-white);
 }
 
-.nav-container{
+.portada-container{
     height: 70vh;
     background-image: url(../assets/img/portada3.jpg);
     background-position: center;
@@ -43,11 +48,27 @@ a{
     overflow: hidden;
 }
 
+.nav-container{
+    left: 0;
+    top: 0;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    transition: 0.5s;
+}
+
+.nav-scroll{
+    background-color: var(--color-main-dark);
+}
+
 .nav{
     display: flex;
     justify-content: space-around;
     align-items: center;
     height: 60px;
+    width: 100%;
     font-size: 20px;
     color: var(--color-white);
     overflow: hidden;
@@ -175,14 +196,40 @@ input[type="number"]::-webkit-inner-spin-button{
     -webkit-appearance: none;
 }
 
+
 input[type="number"]{
     text-align: center;
+}
+
+.range-max, .range-min{
+    cursor: pointer;
+
 }
 
 .submit-filtro{
     height: 40px;
     width: 70px;
     border-radius: 10px;
+    cursor: pointer;
+    border: none;
+}
+
+.submit-filtro:hover{
+    transition: 0.5s;
+    background-color: var(--color-green); 
+}
+
+.limpiar-filtro{
+    height: 40px;
+    width: 120px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+}
+
+.limpiar-filtro:hover{
+    transition: 0.5s;
+    background-color: var(--color-error);
 }
 
 .autos-container {
@@ -204,11 +251,17 @@ input[type="number"]{
     padding: 50px;
     text-align: center;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card-error-autosContainer{
     grid-column: 1/4;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card-success{
@@ -248,12 +301,19 @@ input[type="number"]{
 }
 
 .titulo-card{
-    font-size: 30px;
-    margin-top: 25px;
+    font-size: 20px;
+    margin-top: 0px;
 }
 
+
 .precio-card{
-    font-size: 20px;
+    font-size: 30px;
+}
+
+.title-card{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
 }
 
 .button-container{
@@ -337,8 +397,7 @@ footer {
     width: 70%;
     /* border:#001011 2px solid;
     border-radius: 10px; */
-    margin: auto;
-}
+    margin: auto;}
 
 .card-carrito{
     display: flex;
@@ -353,7 +412,7 @@ footer {
 
 .img-card-carrito{
     height: 100%;
-    width: 120px;
+    width: 150px;
     overflow: hidden;
 }
 
@@ -370,26 +429,38 @@ footer {
     justify-content: center;
 }
 
-.tittle-card{
-    font-size: 16px;
+.cart-title{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    font-size: 25px;
 }
 
 .auto-prop{
     font-size: 20px;
 }
 
-.cart-title{
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    font-size: 20px;
-}
 
-.card-buttons{
+.cart-buttons-container{
     display: flex;
     flex-direction: row;
     gap: 50px;
+}
+
+.cart-buttons{
+    border: none;
+    height: 30px;
+    width: 30px;
+    border-radius: 7px;
+    cursor: pointer;
+    margin-right: 3px;
+}
+
+
+.financiador-button{
+    margin-left: 5px;
+    width: 150px;
+    height: 40px;
 }
 
 .botones-cart{
@@ -397,6 +468,23 @@ footer {
     text-align: center;
     justify-content: space-around;
     margin-top: 10px;
+}
+
+.volver-button{
+    height: 50px;
+    width: 150px;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: var(--color-orange-light);
+}
+
+.comprar-button{
+    height: 50px;
+    width: 150px;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: var(--color-green);
+    font-size: 25px;
 }
 
 /* Media queries */

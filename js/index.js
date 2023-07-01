@@ -1,14 +1,17 @@
 
 const autosContainer = document.querySelector(".autos-container")
 const numeroCart = document.querySelector(".carrito")
+const barraBuscadora = document.querySelector(".buscador-filtro")
 
 function retornarCard(auto){
     return `<div class="card">
                 <div class="img-card">
                     <img src="${auto.imagen}" alt="">
                 </div>
-                <h2 class="titulo-card" id="titulo-card">${auto.marca + " " + auto.nombre}</h2>
-                <h2 class="precio-card" id ="precio-card">$ ${auto.precio}</h2>
+                <div class="title-card">
+                    <h2 class="titulo-card" id="titulo-card">${auto.marca + " " + auto.nombre}</h2>
+                    <h2 class="precio-card" id ="precio-card">$ ${auto.precio}</h2>
+                </div>
                 <div class ="button-container">
                     <button type="button" class ="button-add" id="${auto.id}">Agregar al Carrito</button>
                 </div>
@@ -20,6 +23,14 @@ function retornarError(){
                 <h2>🔍</h2>
                 <h2>No encontramos productos para mostrar.</h2>
                 <h4>Intenta de nuevo más tarde.</h4>
+            </div>`
+}
+
+function retornarErrorFiltro(){
+    return `<div class="card-error card-error-autosContainer">
+                <h2>🔍</h2>
+                <h2>No encontramos productos para mostrar.</h2>
+                <h4>Intenta otro filtro.</h4>
             </div>`
 }
 
@@ -48,24 +59,18 @@ function agregarPrimerUnidadDeAuto(auto){
 }
 
 
-function avisarProductoAgregadoCarrito(elemento){
-    // elemento.textContent = "Agregado ✔"
-    // setTimeout(()=>{
-    //     elemento.textContent = "Agregar al carrito"
-    // }, 2000)
+function avisarProductoAgregadoCarrito(){
     Toastify({
         text: "Agregado al carrito!",
         duration: 1000,
-        // destination: ,
         newWindow: true,
         close: true,
-        gravity: "top", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true, 
         style: {
           background: "#21C063",
-        },
-        onClick: function(){} // Callback after click
+        }
       }).showToast();
 }
 
@@ -84,6 +89,45 @@ function activarSliderPrecios(){
     })
 }
 
+function mostrarProductos(){
+    autosContainer.innerHTML = ""
+    autos.length > 0 ? autos.forEach((auto) => autosContainer.innerHTML += retornarCard(auto)) : autosContainer.innerHTML += retornarError()
+}
+
+function mostrarProductosFiltrados(array){
+    autosContainer.innerHTML = ""
+    array.length > 0 ? array.forEach(auto => autosContainer.innerHTML += retornarCard(auto)) : autosContainer.innerHTML += retornarErrorFiltro()
+}
+
+function activarFiltros(){
+    const botonBuscar = document.querySelector(".submit-filtro")
+    const barraBuscadora = document.querySelector(".buscador-filtro")
+    const precioMin = document.querySelector(".input-min")
+    const precioMax = document.querySelector(".input-max")
+    const limpiarFiltros = document.querySelector(".limpiar-filtro")
+    const sliderMin = document.querySelector(".range-min")
+    const sliderMax = document.querySelector(".range-max")
+
+
+    botonBuscar.addEventListener("click", ()=>{
+        const autosFiltrados = autos.filter(auto => {
+            if(barraBuscadora.value === ""){
+                return auto.precio >= parseInt(precioMin.value) && auto.precio <= parseInt(precioMax.value)
+            }
+            else{
+                return (auto.nombre.toLowerCase() == barraBuscadora.value.toLowerCase() || auto.marca.toLowerCase() == barraBuscadora.value.toLowerCase()) && (auto.precio >= parseInt(precioMin.value) && auto.precio <= parseInt(precioMax.value))
+            }
+        })
+        mostrarProductosFiltrados(autosFiltrados)
+    })
+
+    limpiarFiltros.addEventListener("click", ()=>{
+        mostrarProductos()
+        sliderMin.value = 2000000
+        sliderMax.value = 7000000 // agregar los input
+    })
+}
+
 function activarBotones(){
     const buttons = document.querySelectorAll(".button-add")
     for(let button of buttons){
@@ -98,13 +142,21 @@ function activarBotones(){
     }
 }
 
-function agregarProducto(){
-    autosContainer.innerHTML = ""
-    autos.length > 0 ? autos.forEach((auto) => autosContainer.innerHTML += retornarCard(auto)) : autosContainer.innerHTML += retornarError()
+function activarScrollNav(){
+    const nav = document.querySelector(".nav-container")
+    window.addEventListener("scroll", ()=>{
+        nav.classList.toggle("nav-scroll", window.scrollY>0)
+    })
+}
+
+function iniciarWeb(){
+    mostrarProductos()
     activarBotones()
     hacerNumeroCarritoDinamico(carrito)
     activarSliderPrecios()
+    activarFiltros()
+    activarScrollNav()
 }
 
-agregarProducto()
+iniciarWeb()
 

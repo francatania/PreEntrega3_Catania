@@ -22,7 +22,8 @@ class Financiador {
 function retornarFilaCarrito(auto){
     return `<div class="card-carrito">
                 <div class="img-card-carrito">
-                <img class="imgCarrito" src="${auto.imagen}" alt=""></div>
+                    <img class="imgCarrito" src="${auto.imagen}" alt="">
+                </div>
                 <div class="name-producto div-card">
                     <h3 class="tittle-card" >Nombre Auto</h3>
                     <h3 class="auto-prop">${auto.marca} ${auto.nombre}</h3>
@@ -35,9 +36,9 @@ function retornarFilaCarrito(auto){
                     <h3 class="tittle-card" >Monto</h3>
                     <h3 class="auto-prop">$ ${auto.precio * auto.cantidad}</h3>
                 </div>
-                <div class="div-card card-buttons">
-                    <button id="${auto.id}" class="financiador-button">Calcular financiamiento</button>
-                    <button class="borrar" id="${auto.id}"><h3>❌</h3></button>
+                <div class="div-card cart-buttons-container">
+                    <button id="${auto.id}" class="financiador-button cart-buttons">Calcular financiamiento</button>
+                    <button class="borrar cart-buttons" id="${auto.id}"><h3>❌</h3></button>
                 </div>
             </div>`
 }
@@ -170,6 +171,13 @@ function activarBotonCompra(){
           });
     })}
 
+function activarScrollNav(){
+    const nav = document.querySelector(".nav-container")
+    window.addEventListener("scroll", ()=>{
+        nav.classList.toggle("nav-scroll", window.scrollY>0)
+    })
+}
+
 function actualizarHTMLProductosCarrito(){
     cart.innerHTML = ""
     carrito.forEach(productoCarrito => cart.innerHTML += retornarFilaCarrito(productoCarrito))
@@ -187,6 +195,7 @@ function actualizarCarrito(){
     }
 }
 
+activarScrollNav()
 actualizarCarrito()
 
 
