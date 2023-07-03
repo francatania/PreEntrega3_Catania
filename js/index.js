@@ -1,7 +1,16 @@
 
 const autosContainer = document.querySelector(".autos-container")
 const numeroCart = document.querySelector(".carrito")
+const botonBuscar = document.querySelector(".submit-filtro")
 const barraBuscadora = document.querySelector(".buscador-filtro")
+const precioMin = document.querySelector(".input-min")
+const precioMax = document.querySelector(".input-max")
+const limpiarFiltros = document.querySelector(".limpiar-filtro")
+const sliderMin = document.querySelector(".range-min")
+const sliderMax = document.querySelector(".range-max")
+const selectorMarcas = document.querySelector("#selectorMarcas")
+const btnEnviarForm = document.querySelector(".enviar-form")
+const camposFormulario = document.querySelectorAll(".form-control")
 
 function retornarCard(auto){
     return `<div class="card">
@@ -70,7 +79,9 @@ function avisarProductoAgregadoCarrito(){
         stopOnFocus: true, 
         style: {
           background: "#21C063",
-        }
+          zIndex: 9999999999999999
+        },
+        toastClassName: "toast-index"
       }).showToast();
 }
 
@@ -92,30 +103,23 @@ function activarSliderPrecios(){
 function mostrarProductos(){
     autosContainer.innerHTML = ""
     autos.length > 0 ? autos.forEach((auto) => autosContainer.innerHTML += retornarCard(auto)) : autosContainer.innerHTML += retornarError()
+    activarBotones(autos)
 }
 
 function mostrarProductosFiltrados(array){
     autosContainer.innerHTML = ""
     array.length > 0 ? array.forEach(auto => autosContainer.innerHTML += retornarCard(auto)) : autosContainer.innerHTML += retornarErrorFiltro()
+    activarBotones(array)
 }
 
 function activarFiltros(){
-    const botonBuscar = document.querySelector(".submit-filtro")
-    const barraBuscadora = document.querySelector(".buscador-filtro")
-    const precioMin = document.querySelector(".input-min")
-    const precioMax = document.querySelector(".input-max")
-    const limpiarFiltros = document.querySelector(".limpiar-filtro")
-    const sliderMin = document.querySelector(".range-min")
-    const sliderMax = document.querySelector(".range-max")
-
-
     botonBuscar.addEventListener("click", ()=>{
         const autosFiltrados = autos.filter(auto => {
-            if(barraBuscadora.value === ""){
+            if(barraBuscadora.value === "" && selectorMarcas.value === ""){
                 return auto.precio >= parseInt(precioMin.value) && auto.precio <= parseInt(precioMax.value)
             }
             else{
-                return (auto.nombre.toLowerCase() == barraBuscadora.value.toLowerCase() || auto.marca.toLowerCase() == barraBuscadora.value.toLowerCase()) && (auto.precio >= parseInt(precioMin.value) && auto.precio <= parseInt(precioMax.value))
+                return (auto.nombre.toLowerCase() == barraBuscadora.value.toLowerCase() || auto.marca.toLowerCase() == selectorMarcas.value.toLowerCase()) && (auto.precio >= parseInt(precioMin.value) && auto.precio <= parseInt(precioMax.value))
             }
         })
         mostrarProductosFiltrados(autosFiltrados)
@@ -123,23 +127,45 @@ function activarFiltros(){
 
     limpiarFiltros.addEventListener("click", ()=>{
         mostrarProductos()
-        sliderMin.value = 2000000
-        sliderMax.value = 7000000 // agregar los input
+        sliderMin.value = 200000
+        sliderMax.value = 5000000
+        precioMax.value = sliderMax.value
+        precioMin.value = sliderMin.value
+        selectorMarcas.value = ""
+        barraBuscadora.value = ""
     })
 }
 
-function activarBotones(){
+function activarBotones(array){
     const buttons = document.querySelectorAll(".button-add")
     for(let button of buttons){
         button.addEventListener("click", e =>{
             let idBoton = parseInt(e.target.id)
-            let autoElegido = autos.find(auto => auto.id === idBoton)
+            let autoElegido = array.find(auto => auto.id === idBoton)
             carrito.some(auto=> auto.id === idBoton) ? aumentarCantidadAuto(idBoton) : agregarPrimerUnidadDeAuto(autoElegido)
             hacerNumeroCarritoDinamico(carrito)
             localStorage.setItem("miCarrito", JSON.stringify(carrito))
             avisarProductoAgregadoCarrito(button)
         })
     }
+}
+
+function alertarFormEnviado(){
+    Swal.fire({
+        icon: 'success',
+        title: '¡Consulta enviada!',
+        confirmButtonText:
+            'Ok'
+      });
+}
+
+function activarFormulario(){
+    btnEnviarForm.addEventListener("click", ()=>{
+        alertarFormEnviado()
+        for(boton of camposFormulario){
+            boton.value = ""
+        }
+    })
 }
 
 function activarScrollNav(){
@@ -151,11 +177,12 @@ function activarScrollNav(){
 
 function iniciarWeb(){
     mostrarProductos()
-    activarBotones()
+
     hacerNumeroCarritoDinamico(carrito)
     activarSliderPrecios()
     activarFiltros()
     activarScrollNav()
+    activarFormulario()
 }
 
 iniciarWeb()

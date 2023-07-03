@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/variables.js"></script>
     <script defer src="./js/index.js"></script>
@@ -22,8 +23,8 @@
             </div>
             <div class="menu">
                 <ul class="listMenu">
-                    <li class="modelos">Modelos</li>
-                    <li class="contacto">Contacto</li>
+                    <li class="modelos"><a href="#filtros">Modelos</a></li>
+                    <li class="contacto"><a href="#portada">Contacto</a></li>
                 </ul>
             </div>
             <div class="buscador">
@@ -46,25 +47,34 @@
 
     <section class="main">
         <div class="filtrosContainer-Container">
-            <div class="filtrosContainer">
-                <div class="input-filtro">
+            <div class="filtrosContainer" id="filtros">
+                <div class="input-filtro filtrosBTN">
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                    <input class="buscador-filtro" type="text" placeholder="Buscá por nombre o marca...">
+                    <input class="buscador-filtro filtrosBTN" type="text" placeholder="Buscá por nombre...">
+                </div>
+                <div class="filtrosMarca">
+                    <select name="Marca" id="selectorMarcas" class="opciones-marca form-select filtrosBTN">
+                        <option value="" disabled selected>Elegí marca</option>
+                        <option value="Fiat">Fiat</option>
+                        <option value="Peugeot">Peugeot</option>
+                        <option value="Vw">Vw</option>
+                        <option value="Toyota">Toyota</option>
+                    </select>
                 </div>
                 <div class="rango-precio-container">
                     <div class="min-container range-wraper">
                         <div class="field-min field">
                             <span>Min</span>
-                            <input type="number" class="input-min" value="500000">
+                            <input type="number" class="input-min filtrosBTN" value="500000">
                         </div>
                         <div class="slider-min slider">
-                            <input type="range" step="100000" class="range-min" min="200000" max="4999999" value="500000">
+                            <input type="range" step="100000" class="range-min filtrosBTN" min="200000" max="4999999" value="500000">
                         </div>
                     </div>
                     <div class="max-container range-wraper">
                         <div class="field-max field">
                             <span>Max</span>
-                            <input type="number" class="input-max" value="5000000">
+                            <input type="number" class="input-max filtrosBTN" value="5000000">
                         </div>
                         <div class="slider-max slider">
                             <input type="range" step="100000" class="range-max" min="5000000" max="9500000" value="7000000">
@@ -72,16 +82,45 @@
                     </div>
                 </div>
                 <div class="limpiarFiltros-container">
-                    <button class="limpiar-filtro" type="submit">Limpiar filtros</button>
+                    <button class="limpiar-filtro filtrosBTN" type="submit">Limpiar filtros</button>
                 </div>
                 <div class="submit-filtroContainer">
-                    <button class="submit-filtro" type="submit">Buscar</button>
+                    <button class="submit-filtro filtrosBTN" type="submit">Buscar</button>
                 </div>
             </div>
         </div>
 
         <div class="autos-container">
 
+        </div>
+    </section>
+
+    <section class="contacto-container">
+        <div class="contacto-background">
+            <div class="portada-contacto" id="portada">
+                <h2>¿Consultas?</h2>
+                <h3>Te dejamos un formulario para que nos contactes.</h3>
+            </div>
+            <div class="formulario">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Nombre completo</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre Apellido">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="nombre@gmail.com">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Teléfono</label>
+                    <input type="tel" class="form-control" id="exampleFormControlInput3" placeholder="3517772227">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Mensaje</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary enviar-form">Enviar</button>
+            </div>
+            
         </div>
     </section>
 
@@ -103,7 +142,9 @@
             <h3>© Copyright todos los derechos reservados 2023</h3>
         </div>
     </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js
+    "></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
 </body>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </html>

@@ -25,15 +25,15 @@ function retornarFilaCarrito(auto){
                     <img class="imgCarrito" src="${auto.imagen}" alt="">
                 </div>
                 <div class="name-producto div-card">
-                    <h3 class="tittle-card" >Nombre Auto</h3>
+                    <h3 class="tittle-card-carrito" >Nombre Auto</h3>
                     <h3 class="auto-prop">${auto.marca} ${auto.nombre}</h3>
                 </div>
                 <div class="cantidad div-card">
-                    <h3 class="tittle-card" >Cantidad</h3>
+                    <h3 class="tittle-card-carrito" >Cantidad</h3>
                     <h3 class="auto-prop">${auto.cantidad}</h3>
                 </div>
                 <div class="precio div-card">
-                    <h3 class="tittle-card" >Monto</h3>
+                    <h3 class="tittle-card-carrito" >Monto</h3>
                     <h3 class="auto-prop">$ ${auto.precio * auto.cantidad}</h3>
                 </div>
                 <div class="div-card cart-buttons-container">
@@ -48,19 +48,19 @@ function retornarFormularioFinanciador(auto){
                 <div class="img-card-carrito">
                 <img class="imgCarrito" src="${auto.imagen}" alt=""></div>
                 <div class="name-producto div-card">
-                    <h3 class="tittle-card" >Nombre Auto</h3>
+                    <h3 class="tittle-card-carrito" >Nombre Auto</h3>
                     <h3 class="auto-prop">${auto.marca} ${auto.nombre}</h3>
                 </div>
                 <div class="precio div-card">
-                    <h3 class="tittle-card" >Monto</h3>
+                    <h3 class="tittle-card-carrito" >Monto</h3>
                     <h3 class="auto-prop">$ ${auto.precio * auto.cantidad}</h3>
                 </div>
-                <div class="div-card">
+                <div class="div-card button-calcular-container">
                     <input id="inputCuotas" type="number" name="cantidadCuotas" placeholder="Ingrese la cantidad de cuotas">
                     <button type="submit" id="calcular">Calcular</button>
                 </div>
                 <div class="div-card cuota-calculada">
-                    <h3 class="tittle-card">Precio cuota</h3>
+                    <h3 class="tittle-card-carrito">Precio cuota</h3>
                     <h3>$0</h3>
                 </div>
             </div>`
@@ -71,19 +71,19 @@ function retornarFormularioFinanciadorCalculado(auto, cuota){
                 <div class="img-card-carrito">
                 <img class="imgCarrito" src="${auto.imagen}" alt=""></div>
                 <div class="name-producto div-card">
-                    <h3 class="tittle-card" >Nombre Auto</h3>
+                    <h3 class="tittle-card-carrito" >Nombre Auto</h3>
                     <h3 class="auto-prop">${auto.marca} ${auto.nombre}</h3>
                 </div>
                 <div class="precio div-card">
-                    <h3 class="tittle-card" >Monto</h3>
+                    <h3 class="tittle-card-carrito" >Monto</h3>
                     <h3 class="auto-prop">$ ${auto.precio * auto.cantidad}</h3>
                 </div>
-                <div class="div-card">
+                <div class="div-card button-calcular-container">
                     <input id="inputCuotas" type="number" name="cantidadCuotas" placeholder="Ingrese la cantidad de cuotas">
                     <button type="submit" id="calcular">Calcular</button>
                 </div>
                 <div class="div-card cuota-calculada">
-                    <h3 class="tittle-card">Precio cuota</h3>
+                    <h3 class="tittle-card-carrito">Precio cuota</h3>
                     <h3>$ ${cuota}</h3>
                 </div>
             </div>`
@@ -131,12 +131,23 @@ function activarBotonCalcularCuotas(auto){
     })
 }
 
+function retornarBtnVolverCarrito(){
+    return `<a href="carrito.html"><button class="volver-button">Volver al carrito</button></a>`
+}
+
+function activarBotonVolverCarrito(elemento){
+    elemento.innerHTML=""
+    elemento.innerHTML += retornarBtnVolverCarrito()
+}
+
 function activarBotonFinanciador(){
+    const botonVolverCarrito = document.querySelector(".volver-container")
     const financiadorBtn = document.querySelectorAll(".financiador-button")
     for(let boton of financiadorBtn){
         boton.addEventListener("click", (e)=>{
             reemplazarHTMLCarrito(retornarFormularioFinanciador(retornarAutoElegido(e)))
             activarBotonCalcularCuotas(retornarAutoElegido(e))
+            activarBotonVolverCarrito(botonVolverCarrito)
         })
     }
 }
