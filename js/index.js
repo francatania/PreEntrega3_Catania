@@ -106,6 +106,30 @@ function mostrarProductos(){
     activarBotones(autos)
 }
 
+// function obtenerProductos(){
+//     fetch(URL)
+//         .then((response) => response.json())
+//         .then((data) => autos.push(...data))
+//         .then(()=> mostrarProductos())
+//         .catch((error)=>{
+//             console.error("Los datos estan corruptos", error)
+//             autosContainer.innerHTML += retornarError()
+//         })
+// }
+
+async function obtenerProductosAsync(){
+    try {
+        const response = await fetch(URL)
+        const data = await response.json()
+        autos.push(...data)
+        mostrarProductos()
+    } catch (error) {
+        autosContainer.innerHTML += retornarError()
+        console.error(error)
+    }
+
+}
+
 function mostrarProductosFiltrados(array){
     autosContainer.innerHTML = ""
     array.length > 0 ? array.forEach(auto => autosContainer.innerHTML += retornarCard(auto)) : autosContainer.innerHTML += retornarErrorFiltro()
@@ -176,8 +200,7 @@ function activarScrollNav(){
 }
 
 function iniciarWeb(){
-    mostrarProductos()
-
+    obtenerProductosAsync()
     hacerNumeroCarritoDinamico(carrito)
     activarSliderPrecios()
     activarFiltros()

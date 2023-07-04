@@ -1,7 +1,7 @@
 
 const cart = document.querySelector(".cart-container")
-const total = document.querySelector(".total")
 const volverBtn = document.querySelector(".volver-button")
+const totales = document.querySelectorAll(".total-precio")
 
 class Financiador {
     constructor(precioAuto, cantidadCuotas){
@@ -34,11 +34,11 @@ function retornarFilaCarrito(auto){
                 </div>
                 <div class="precio div-card">
                     <h3 class="tittle-card-carrito" >Monto</h3>
-                    <h3 class="auto-prop">$ ${auto.precio * auto.cantidad}</h3>
+                    <h3 class="auto-prop">$ <span class="total-precio">${auto.precio * auto.cantidad}</span></h3>
                 </div>
                 <div class="div-card cart-buttons-container">
                     <button id="${auto.id}" class="financiador-button cart-buttons">Calcular financiamiento</button>
-                    <button class="borrar cart-buttons" id="${auto.id}"><h3>❌</h3></button>
+                    <button class="borrar cart-buttons" id="${auto.id}"><h3 class="borrar-h3">❌</h3></button>
                 </div>
             </div>`
 }
@@ -61,7 +61,7 @@ function retornarFormularioFinanciador(auto){
                 </div>
                 <div class="div-card cuota-calculada">
                     <h3 class="tittle-card-carrito">Precio cuota</h3>
-                    <h3>$0</h3>
+                    <h3 class="auto-prop">$0</h3>
                 </div>
             </div>`
 }
@@ -84,9 +84,47 @@ function retornarFormularioFinanciadorCalculado(auto, cuota){
                 </div>
                 <div class="div-card cuota-calculada">
                     <h3 class="tittle-card-carrito">Precio cuota</h3>
-                    <h3>$ ${cuota}</h3>
+                    <h3 class="auto-prop">$ ${cuota}</h3>
                 </div>
             </div>`
+}
+
+function retornarFormularioTarjetaCredito(totaal){
+    return `
+    <div class="formulario-pago">
+        <div class="mb-3 campos-pago">
+            <div class="mb-3 inputs-tarjeta">
+                <label for="exampleFormControlInput1" class="form-label">Nombre completo</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre Apellido" value="Fulanito Pérez">
+            </div>
+            <div class="mb-3 inputs-tarjeta">
+                <label for="exampleFormControlInput1" class="form-label">DNI</label>
+                <input type="number" class="form-control" id="exampleFormControlInput3" placeholder="3517772227" value ="40198756">
+            </div>
+        </div>
+        <div class="mb-3 campos-pago">
+            <div class="mb-3 inputs-tarjeta">
+                <label for="exampleFormControlInput1" class="form-label">Número de tarjeta</label>
+                <input type="number" class="form-control" id="exampleFormControlInput3" placeholder="" value ="0000111122223333">
+            </div>
+            <div class="mb-3 inputs-tarjeta">
+                <label for="exampleFormControlInput1" class="form-label">Código de seguridad</label>
+                <input type="number" class="form-control" id="exampleFormControlInput3" placeholder="3517772227" value ="123">
+            </div>
+        </div>
+        <div class="mb-3 campos-pago">
+            <div class="mb-3 inputs-tarjeta">
+                <label for="exampleFormControlInput1" class="form-label">Cantidad de cuotas</label>
+                <input type="number" class="form-control" id="exampleFormControlInput3" placeholder="Escribi las cuotas">
+            </div>
+            <div class="mb-3 inputs-tarjeta total-tarjeta">
+                <h3 class="total-tarjeta-h3">Total: $  </h3>
+                <h3 class = "total-tarjeta-h3">${totaal}</h3>
+            </div>
+        </div>
+
+    </div>
+    `
 }
 
 function retornarCardCarritoVacio(){
@@ -169,8 +207,42 @@ function activarBotonBorrar(){
     }
 }
 
+function retornarBotonesCart(){
+    return `
+    <div class="volver-container">
+        <a href="index.html"><button class="volver-button">Seguir comprando</button></a>
+    </div>
+    <div class="comprar-container">
+        <button class="finalizar-compra">Comprar</button>
+    </div>
+    `
+}
+
+function activarBotonIrAPagar(){
+    const botonIrAPagar = document.querySelector(".comprar-button")
+    const carritoContainer = document.querySelector(".cart-container-container")
+    const botonesCart = document.querySelector(".botones-cart")
+    const segundoPaso = document.querySelector(".segundo-paso")
+    const divisorPasos = document.querySelector(".linea")
+    let contadorTotal = 0
+    botonIrAPagar.addEventListener("click", ()=>{
+        for(let auto of carrito){
+            contadorTotal += auto.precio * auto.cantidad
+        }
+        console.log(contadorTotal)
+        carritoContainer.innerHTML = ""
+        carritoContainer.innerHTML += retornarFormularioTarjetaCredito(contadorTotal)
+        carritoContainer.classList += " cart-container-formulario"
+        botonesCart.innerHTML = ""
+        botonesCart.innerHTML += retornarBotonesCart()
+        segundoPaso.classList += " posicion-carrito"
+        divisorPasos.classList += " posicion-carrito"
+        activarBotonCompra()
+    })
+}
+
 function activarBotonCompra(){
-    const botonCompra = document.querySelector(".comprar-button")
+    const botonCompra = document.querySelector(".finalizar-compra")
     botonCompra.addEventListener("click", ()=>{
         reemplazarHTMLCarrito(retornarCardCompra())
         localStorage.clear()
@@ -198,7 +270,8 @@ function actualizarCarrito(){
     if(carrito.length >0) {
         actualizarHTMLProductosCarrito()
         activarBotonBorrar()
-        activarBotonCompra()
+        activarBotonIrAPagar()
+        // activarBotonCompra()
         activarBotonFinanciador()
     }
     else{
