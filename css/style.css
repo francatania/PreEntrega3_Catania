@@ -44,6 +44,7 @@ a{
     color: var(--color-white);
 }
 
+
 .portada-container{
     height: 70vh;
     background-color: var(--color-white);
@@ -89,13 +90,46 @@ a{
     font-size: 20px;
     color: var(--color-white);
     overflow: hidden;
+    text-align: center;
 }
 
 .listMenu {
     display: flex;
     gap: 25px;
+    text-align: center;
+    align-items: center;
 }
 
+.list-item{
+    display: inline-block;
+}
+
+.link-menu{
+    position: relative;
+}
+
+.link-menu:after{
+    content: "";
+    width: 0;
+    height: 2px;
+    background-color: var(--color-white);
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    transition: all .3s;
+    will-change: width;
+}
+
+.link-menu:hover::after{
+    width: 100%;
+    right: 0;
+}
+
+#numeroCarrito{
+    text-align: center;
+    align-items: center;
+    font-size: 18px;
+}
 
 .titulo {
     grid-column: 4/6;
@@ -351,6 +385,7 @@ input[type="number"]{
     color: var(--color-main-dark);
     background-color: var(--color-orange);
     width: 100%;
+    border: none;
 }
 
 .button-add:hover{
@@ -383,14 +418,14 @@ footer {
     text-decoration: none;
 }
 
-/* .copyright{
-    font-size: 1px!important;
-} */
+.copyright-h3{
+    font-size: 18px;
+}
 
 /* contacto */
 
 .contacto-container{
-    height: 1200px;
+    height: 1100px;
     background-color: var(--color-white);
     display: flex;
     justify-content: center;
