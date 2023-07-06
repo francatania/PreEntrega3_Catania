@@ -97,21 +97,45 @@ function retornarFormularioTarjetaCredito(totaal){
                 <label for="exampleFormControlInput1" class="form-label">Nombre completo</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre Apellido" value="Fulanito Pérez">
             </div>
+        </div>
+
+        <div class="mb-3 campos-pago">
             <div class="mb-3 inputs-tarjeta">
                 <label for="exampleFormControlInput1" class="form-label">DNI</label>
                 <input type="number" class="form-control" id="exampleFormControlInput3" placeholder="3517772227" value ="40198756">
             </div>
         </div>
+
         <div class="mb-3 campos-pago">
             <div class="mb-3 inputs-tarjeta">
                 <label for="exampleFormControlInput1" class="form-label">Número de tarjeta</label>
                 <input type="number" class="form-control" id="exampleFormControlInput3" placeholder="" value ="0000111122223333">
             </div>
-            <div class="mb-3 inputs-tarjeta">
+        </div>
+
+        <div class="mb-3 campos-pago-datos-tarjeta">
+
+            <div class="mb-3 inputs-tarjeta inputs-datos-tarjeta">
                 <label for="exampleFormControlInput1" class="form-label">Código de seguridad</label>
                 <input type="number" class="form-control" id="exampleFormControlInput3" placeholder="3517772227" value ="123">
+
             </div>
+
+            <div class="mb-3 inputs-tarjeta inputs-fecha-vencimiento">
+                <div class="mb-3 inputs-tarjeta inputs-datos-tarjeta">   
+                    <label for="exampleFormControlInput1" class="form-label">MMM</label>
+                    <input type="number" class="form-control" id="exampleFormControlInput3" value ="12">
+                    
+                </div>
+                <div class="mb-3 inputs-tarjeta inputs-datos-tarjeta"> 
+                    <label for="exampleFormControlInput1" class="form-label">YYY</label>
+                    <input type="number" class="form-control" id="exampleFormControlInput3" placeholder="3517772227" value ="28">
+                </div> 
+            </div>
+
         </div>
+
+
         <div class="mb-3 campos-pago">
             <div class="mb-3 inputs-tarjeta">
                 <label for="exampleFormControlInput1" class="form-label">Cantidad de cuotas</label>
@@ -122,7 +146,7 @@ function retornarFormularioTarjetaCredito(totaal){
                 <h3 class = "total-tarjeta-h3">${totaal}</h3>
             </div>
         </div>
-
+        <button type="submit" class="btn btn-primary enviar-form" id="confirmar-compra">Confirmar compra</button>
     </div>
     `
 }
@@ -210,10 +234,7 @@ function activarBotonBorrar(){
 function retornarBotonesCart(){
     return `
     <div class="volver-container">
-        <a href="index.html"><button class="volver-button">Seguir comprando</button></a>
-    </div>
-    <div class="comprar-container">
-        <button class="finalizar-compra">Comprar</button>
+        <a href="carrito.html"><button class="volver-button">Volver al carrito</button></a>
     </div>
     `
 }
@@ -224,6 +245,8 @@ function activarBotonIrAPagar(){
     const botonesCart = document.querySelector(".botones-cart")
     const segundoPaso = document.querySelector(".segundo-paso")
     const divisorPasos = document.querySelector(".linea")
+    const contenedorCarrito = document.querySelector(".section-cart")
+
     let contadorTotal = 0
     botonIrAPagar.addEventListener("click", ()=>{
         for(let auto of carrito){
@@ -235,14 +258,16 @@ function activarBotonIrAPagar(){
         carritoContainer.classList += " cart-container-formulario"
         botonesCart.innerHTML = ""
         botonesCart.innerHTML += retornarBotonesCart()
+        botonesCart.classList += " botones-cart-form"
         segundoPaso.classList += " posicion-carrito"
         divisorPasos.classList += " posicion-carrito"
+        contenedorCarrito.classList += " section-cart-form"
         activarBotonCompra()
     })
 }
 
 function activarBotonCompra(){
-    const botonCompra = document.querySelector(".finalizar-compra")
+    const botonCompra = document.querySelector("#confirmar-compra")
     botonCompra.addEventListener("click", ()=>{
         reemplazarHTMLCarrito(retornarCardCompra())
         localStorage.clear()

@@ -1,5 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&family=Space+Grotesk:wght@300;400;500&display=swap');
 
 /* colores */
 :root{
@@ -11,7 +10,7 @@
     --color-error: #EC0B43;
     --color-error-light: #fc0241;
     --color-green: #21C063;
-    --color-green-light :#5fda92;
+    --color-green-light :#38d67a;
 }
 
 
@@ -48,7 +47,24 @@ a{
 .portada-container{
     height: 70vh;
     background-color: var(--color-white);
+}
 
+.portada-container-carrito{
+    height: 40vh;
+}
+
+.portada-carrito{
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    background-image: url(../assets/img/portadaCarrito.jpg);
+    /* background-attachment:fixed; */
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
 }
 
 .portada {
@@ -91,6 +107,17 @@ a{
     color: var(--color-white);
     overflow: hidden;
     text-align: center;
+}
+
+.titulo-nav{
+    width: 30%;
+}
+
+.menues-nav{
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 10px;
 }
 
 .listMenu {
@@ -155,10 +182,11 @@ a{
 }
 
 .filtrosContainer-Container{
-    width: 70%;
     margin: auto;
     margin-top: 50px;
     display: flex;
+    width: 70%;
+    margin-bottom: -10px;
     /* background-color: #E78823; */
 }
 
@@ -315,6 +343,14 @@ input[type="number"]{
     justify-content: space-between;
 }
 
+.card-error-h2{
+    font-size: 25px;
+}
+
+.card-error-h4{
+    font-size: 20px;
+}
+
 .card-success{
     background-color: var(--color-green);
     height: 200px;
@@ -437,7 +473,7 @@ footer {
 }
 
 .contacto-background{
-    width: 90%;
+    width: 70%;
     height: 1000px;
     background-color: var(--color-white-darker);
     margin-top: 70px;
@@ -507,7 +543,8 @@ footer {
     align-items: center;
     gap: 5px;
     padding-top: 50px;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
+    overflow: hidden;
 }
 
 .primer-paso{
@@ -567,11 +604,15 @@ h1, h2, h3 {
 
 .section-cart{
     background-color: var(--color-white);
-    height: 1200px;
+    height: 500px;
+}
+
+.section-cart-form{
+    height: 900px;
 }
 
 .cart-container-container{
-    height: 600px;
+    height: 350px;
     /* display: flex; */
     /* justify-content: center; */
     /* align-items: center; */
@@ -581,9 +622,6 @@ h1, h2, h3 {
     border: var(--color-main-dark) 0px solid;
 }
 
-.cart-container-formulario{
-    height: 540px!important;
-}
 
 .cart-container{
     /* overflow-y: hidden; */
@@ -596,6 +634,11 @@ h1, h2, h3 {
     margin: 0px;
     padding: 50px;
     height: auto;
+}
+
+.cart-container-formulario{
+    height: 750px!important;
+    overflow: hidden;
 }
 
 .card-carrito{
@@ -658,7 +701,7 @@ h1, h2, h3 {
 
 .financiador-button{
     margin-left: 5px;
-    width: 180px;
+    width: 190px;
     height: 40px;
 }
 
@@ -700,69 +743,122 @@ h1, h2, h3 {
 .botones-cart{
     display: flex;
     text-align: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    width: 80%;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.botones-cart-form{
+    width: 80%;
+    justify-content: start;
+    margin: auto;
     margin-top: 10px;
 }
 
 .volver-button{
     height: 50px;
     width: 150px;
-    border-radius: 7px;
+    border-radius: 5px;
+    border: 1px solid var(--color-main-dark);
     cursor: pointer;
     background-color: var(--color-orange-light);
+    font-weight: 300;
 }
 
 .comprar-button{
     height: 50px;
     width: 150px;
-    border-radius: 7px;
+    border-radius: 5px;
+    border: 1px solid var(--color-main-dark);
     cursor: pointer;
-    background-color: var(--color-green);
-    font-size: 25px;
+    background-color: var(--color-green-light);
+    font-size: 20px;
+    font-weight: 300;
 }
 
 .finalizar-compra{
     height: 50px;
     width: 150px;
-    border-radius: 7px;
+    border-radius: 5px;
+    border: 1px solid var(--color-main-dark);
     cursor: pointer;
-    background-color: var(--color-green);
+    background-color: var(--color-green-light);
     font-size: 25px;
+    font-weight: 300;
 }
 
 .formulario-pago{
+    font-family: 'Space Grotesk', sans-serif!important;
     padding: 40px;
     background-color: var(--color-white);
     margin: auto;
     margin-top: 20px;
     width: 60%;
+    height: auto;
     border: 1px solid var(--color-main-dark);
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
 }
 
 .campos-pago{
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 0px;
+    width: 100%;
+    font-family: 'Space Grotesk', sans-serif!important;
+    /* background-color: #21C063; */
+}
 
+.form-label{
+    text-align: start;
 }
 
 .inputs-tarjeta{
+    width: 100%;
+    text-align: start;
+    height: 80px;
+    gap: 10px!important;
+}
 
-    width: 200px;
-    text-align: center;
-    height: 100px;
+.inputs-tarjeta input{
+    text-align: start;
+}
+
+.campos-pago-datos-tarjeta{
+    display: flex;
+    flex-direction: row;
+    /* background-color: #E78823; */
+    justify-content: space-between;
+}
+
+.inputs-datos-tarjeta{
+    width: 40%;
+}
+
+.inputs-fecha-vencimiento{
+    display: flex;
+    overflow: hidden;
+    width: 40%;
+    justify-content: space-between;
+
 }
 
 .total-tarjeta{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: end;
+
 }
 
 .total-tarjeta-h3{
     font-size: 20px;
 }
 
+#confirmar-compra{
+    background-color: var(--color-green);
+}
 /* Media queries */
 
 @media only screen and (max-width:1650px) {
@@ -775,10 +871,6 @@ h1, h2, h3 {
     .filtrosContainer{
         border-radius: 0px;
     }
-
-    .cart-container-container{
-        height: 350px;
-    }
     
     .autos-container {
         width: 90%;
@@ -786,5 +878,9 @@ h1, h2, h3 {
         gap: 30px;
         justify-content: space-around;
         row-gap: 120px ;
+    }
+
+    .contacto-background{
+        width: 90%;
     }
 }

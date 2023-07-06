@@ -29,17 +29,17 @@ function retornarCard(auto){
 
 function retornarError(){
     return `<div class="card-error card-error-autosContainer">
-                <h2>🔍</h2>
-                <h2>No encontramos productos para mostrar.</h2>
-                <h4>Intenta de nuevo más tarde.</h4>
+                <h2 class="card-error-h2">🔍</h2>
+                <h2 class="card-error-h2">No encontramos productos para mostrar.</h2>
+                <h4 class="card-error-h4">Intenta de nuevo más tarde.</h4>
             </div>`
 }
 
 function retornarErrorFiltro(){
     return `<div class="card-error card-error-autosContainer">
-                <h2>🔍</h2>
-                <h2>No encontramos productos para mostrar.</h2>
-                <h4>Intenta otro filtro.</h4>
+                <h2 class="card-error-h2">🔍</h2>
+                <h2 class="card-error-h2">No encontramos productos para mostrar.</h2>
+                <h4 class="card-error-h4">Intenta otro filtro.</h4>
             </div>`
 }
 
@@ -105,17 +105,6 @@ function mostrarProductos(){
     autos.length > 0 ? autos.forEach((auto) => autosContainer.innerHTML += retornarCard(auto)) : autosContainer.innerHTML += retornarError()
     activarBotones(autos)
 }
-
-// function obtenerProductos(){
-//     fetch(URL)
-//         .then((response) => response.json())
-//         .then((data) => autos.push(...data))
-//         .then(()=> mostrarProductos())
-//         .catch((error)=>{
-//             console.error("Los datos estan corruptos", error)
-//             autosContainer.innerHTML += retornarError()
-//         })
-// }
 
 async function obtenerProductosAsync(){
     try {
