@@ -112,7 +112,7 @@ a{
 
 .nav-scroll{
     background-color: var(--color-main-dark);
-    z-index: 9999999999999999999999999999;
+    z-index: 999999;
 }
 
 
@@ -965,6 +965,15 @@ h1, h2, h3 {
 
     .nav{
         overflow: visible;
+        justify-content: space-between;
+    }
+
+    .titulo-nav{
+        margin-left: 10px;
+    }
+
+    .abrir-menu{
+        margin-right: 10px;
     }
 
     .menu{
@@ -1067,7 +1076,7 @@ h1, h2, h3 {
 
     .card-carrito{
         flex-direction: column;
-        height: 200px;
+        height: 240px;
         gap: 0px;
         justify-content: space-around;
         align-items: center;
@@ -1114,11 +1123,16 @@ h1, h2, h3 {
     .cart-buttons-container{
         width: 100%;
         justify-content: space-around;
+        font-size: 14px;
     }
     
     .precio-input{
         display: flex;
         gap: 50px;
+    }
+    
+    .cantidad-precio h3{
+        font-size: 14px;
     }
 
     .nombre-precio{
