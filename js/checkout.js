@@ -1,4 +1,3 @@
-
 const cart = document.querySelector(".cart-container")
 const volverBtn = document.querySelector(".volver-button")
 const totales = document.querySelectorAll(".total-precio")
@@ -12,6 +11,7 @@ class Financiador {
         const interes1 = 1.25
         const interes2 = 1.50
         let precioCuota = 0
+        this.cantidadCuotas <= 0 ? precioCuota = 0:
         this.cantidadCuotas < 25 ? precioCuota = (this.precioAuto / this.cantidadCuotas) : 
         this.cantidadCuotas > 24 && this.cantidadCuotas < 37 ? precioCuota = ((this.precioAuto * interes1) / this.cantidadCuotas) : 
                                                                 precioCuota = ((this.precioAuto * interes2) / this.cantidadCuotas)
@@ -19,74 +19,189 @@ class Financiador {
     }
 }
 
+// function retornarFilaCarrito(auto){
+//     return `<div class="card-carrito">
+//                 <div class="img-card-carrito">
+//                     <img class="imgCarrito" src=".${auto.imagen}" alt="">
+//                 </div>
+//                 <div class="name-producto div-card">
+//                     <h3 class="tittle-card-carrito" >Nombre Auto</h3>
+//                     <h3 class="auto-prop">${auto.marca} ${auto.nombre}</h3>
+//                 </div>
+//                 <div class="cantidad div-card">
+//                     <h3 class="tittle-card-carrito" >Cantidad</h3>
+//                     <h3 class="auto-prop">${auto.cantidad}</h3>
+//                 </div>
+//                 <div class="precio div-card">
+//                     <h3 class="tittle-card-carrito" >Monto</h3>
+//                     <h3 class="auto-prop">$ <span class="total-precio">${auto.precio * auto.cantidad}</span></h3>
+//                 </div>
+//                 <div class="div-card cart-buttons-container">
+//                     <button id="${auto.id}" class="financiador-button cart-buttons">Calcular financiamiento</button>
+//                     <button class="borrar cart-buttons" id="${auto.id}"><h3 class="borrar-h3">❌</h3></button>
+//                 </div>
+//             </div>`
+// }
+
 function retornarFilaCarrito(auto){
-    return `<div class="card-carrito">
-                <div class="img-card-carrito">
-                    <img class="imgCarrito" src="${auto.imagen}" alt="">
-                </div>
-                <div class="name-producto div-card">
-                    <h3 class="tittle-card-carrito" >Nombre Auto</h3>
-                    <h3 class="auto-prop">${auto.marca} ${auto.nombre}</h3>
-                </div>
-                <div class="cantidad div-card">
-                    <h3 class="tittle-card-carrito" >Cantidad</h3>
-                    <h3 class="auto-prop">${auto.cantidad}</h3>
-                </div>
-                <div class="precio div-card">
-                    <h3 class="tittle-card-carrito" >Monto</h3>
-                    <h3 class="auto-prop">$ <span class="total-precio">${auto.precio * auto.cantidad}</span></h3>
-                </div>
-                <div class="div-card cart-buttons-container">
-                    <button id="${auto.id}" class="financiador-button cart-buttons">Calcular financiamiento</button>
-                    <button class="borrar cart-buttons" id="${auto.id}"><h3 class="borrar-h3">❌</h3></button>
-                </div>
-            </div>`
+    return `
+    <div class="card-carrito">
+    <div class="info-cart">
+        <div class="img-nombre">
+            <div class="img-card-carrito">
+                <img class="imgCarrito" src=".${auto.imagen}" alt="">
+            </div>
+    
+        </div>
+    
+        <div class="cantidad-precio">
+            <div class="name-producto div-card">
+                <h3 class="tittle-card-carrito" >Nombre Auto</h3>
+                <h3 class="auto-prop">${auto.marca} ${auto.nombre}</h3>
+            </div>
+            <div class="cantidad div-card">
+                <h3 class="tittle-card-carrito" >Cantidad</h3>
+                <h3 class="auto-prop">${auto.cantidad}</h3>
+            </div>
+            <div class="precio div-card">
+                <h3 class="tittle-card-carrito" >Monto</h3>
+                <h3 class="auto-prop">$ <span class="total-precio">${auto.precio * auto.cantidad}</span></h3>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="financiador-salir">
+        
+        <div class="div-card cart-buttons-container">
+            <button id="${auto.id}" class="financiador-button cart-buttons">Calcular financiamiento</button>
+            <button class="borrar cart-buttons" id="${auto.id}"><h3 class="borrar-h3">❌</h3></button>
+        </div>
+    </div>
+
+</div>
+    `
 }
+
+// function retornarFormularioFinanciador(auto){
+//     return `<div class="card-carrito">
+//                 <div class="img-card-carrito">
+//                 <img class="imgCarrito" src=".${auto.imagen}" alt=""></div>
+//                 <div class="name-producto div-card">
+//                     <h3 class="tittle-card-carrito" >Nombre Auto</h3>
+//                     <h3 class="auto-prop">${auto.marca} ${auto.nombre}</h3>
+//                 </div>
+//                 <div class="precio div-card">
+//                     <h3 class="tittle-card-carrito" >Monto</h3>
+//                     <h3 class="auto-prop">$ ${auto.precio * auto.cantidad}</h3>
+//                 </div>
+//                 <div class="div-card button-calcular-container">
+//                     <input id="inputCuotas" type="number" name="cantidadCuotas" placeholder="Ingrese la cantidad de cuotas">
+//                     <button type="submit" id="calcular">Calcular</button>
+//                 </div>
+//                 <div class="div-card cuota-calculada">
+//                     <h3 class="tittle-card-carrito">Precio cuota</h3>
+//                     <h3 class="auto-prop">$0</h3>
+//                 </div>
+//             </div>`
+// }
 
 function retornarFormularioFinanciador(auto){
-    return `<div class="card-carrito">
-                <div class="img-card-carrito">
-                <img class="imgCarrito" src="${auto.imagen}" alt=""></div>
-                <div class="name-producto div-card">
-                    <h3 class="tittle-card-carrito" >Nombre Auto</h3>
-                    <h3 class="auto-prop">${auto.marca} ${auto.nombre}</h3>
-                </div>
-                <div class="precio div-card">
-                    <h3 class="tittle-card-carrito" >Monto</h3>
-                    <h3 class="auto-prop">$ ${auto.precio * auto.cantidad}</h3>
-                </div>
-                <div class="div-card button-calcular-container">
-                    <input id="inputCuotas" type="number" name="cantidadCuotas" placeholder="Ingrese la cantidad de cuotas">
-                    <button type="submit" id="calcular">Calcular</button>
-                </div>
-                <div class="div-card cuota-calculada">
-                    <h3 class="tittle-card-carrito">Precio cuota</h3>
-                    <h3 class="auto-prop">$0</h3>
-                </div>
-            </div>`
+    return `
+    <div class="card-carrito">
+    <div class="info-cart">
+        <div class="img-nombre">
+            <div class="img-card-carrito">
+                <img class="imgCarrito" src=".${auto.imagen}" alt=""></div>
+        </div>
+        <div class="nombre-precio">
+            <div class="name-producto div-card">
+                <h3 class="tittle-card-carrito" >Nombre Auto</h3>
+                <h3 class="auto-prop">${auto.marca} ${auto.nombre}</h3>
+            </div>
+            <div class="precio div-card">
+                <h3 class="tittle-card-carrito" >Monto</h3>
+                <h3 class="auto-prop">$ ${auto.precio * auto.cantidad}</h3>
+            </div>
+        </div>    
+
+    </div>
+        
+        
+    <div class="inputs-calcular-container">
+        <div class="div-card button-calcular-container">
+            <input id="inputCuotas" type="number" name="cantidadCuotas" placeholder="Ingrese la cantidad de cuotas">
+            <button type="submit" id="calcular">Calcular</button>
+        </div>
+        <div class="div-card cuota-calculada">
+            <h3 class="tittle-card-carrito">Precio cuota</h3>
+            <h3 class="auto-prop">$0</h3>
+        </div>
+    </div>
+
+
+</div>
+    `
 }
 
+// function retornarFormularioFinanciadorCalculado(auto, cuota){
+//     return `<div class="card-carrito">
+//                 <div class="img-card-carrito">
+//                 <img class="imgCarrito" src=".${auto.imagen}" alt=""></div>
+//                 <div class="name-producto div-card">
+//                     <h3 class="tittle-card-carrito" >Nombre Auto</h3>
+//                     <h3 class="auto-prop">${auto.marca} ${auto.nombre}</h3>
+//                 </div>
+//                 <div class="precio div-card">
+//                     <h3 class="tittle-card-carrito" >Monto</h3>
+//                     <h3 class="auto-prop">$ ${auto.precio * auto.cantidad}</h3>
+//                 </div>
+//                 <div class="div-card button-calcular-container">
+//                     <input id="inputCuotas" type="number" name="cantidadCuotas" placeholder="Ingrese la cantidad de cuotas">
+//                     <button type="submit" id="calcular">Calcular</button>
+//                 </div>
+//                 <div class="div-card cuota-calculada">
+//                     <h3 class="tittle-card-carrito">Precio cuota</h3>
+//                     <h3 class="auto-prop">$ ${cuota}</h3>
+//                 </div>
+//             </div>`
+// }
+
 function retornarFormularioFinanciadorCalculado(auto, cuota){
-    return `<div class="card-carrito">
-                <div class="img-card-carrito">
-                <img class="imgCarrito" src="${auto.imagen}" alt=""></div>
-                <div class="name-producto div-card">
-                    <h3 class="tittle-card-carrito" >Nombre Auto</h3>
-                    <h3 class="auto-prop">${auto.marca} ${auto.nombre}</h3>
-                </div>
-                <div class="precio div-card">
-                    <h3 class="tittle-card-carrito" >Monto</h3>
-                    <h3 class="auto-prop">$ ${auto.precio * auto.cantidad}</h3>
-                </div>
-                <div class="div-card button-calcular-container">
-                    <input id="inputCuotas" type="number" name="cantidadCuotas" placeholder="Ingrese la cantidad de cuotas">
-                    <button type="submit" id="calcular">Calcular</button>
-                </div>
-                <div class="div-card cuota-calculada">
-                    <h3 class="tittle-card-carrito">Precio cuota</h3>
-                    <h3 class="auto-prop">$ ${cuota}</h3>
-                </div>
-            </div>`
+    return `
+    <div class="card-carrito">
+    <div class="info-cart">
+        <div class="img-nombre">
+            <div class="img-card-carrito">
+                <img class="imgCarrito" src=".${auto.imagen}" alt=""></div>
+        </div>
+        <div class="nombre-precio">
+            <div class="name-producto div-card">
+                <h3 class="tittle-card-carrito" >Nombre Auto</h3>
+                <h3 class="auto-prop">${auto.marca} ${auto.nombre}</h3>
+            </div>
+            <div class="precio div-card">
+                <h3 class="tittle-card-carrito" >Monto</h3>
+                <h3 class="auto-prop">$ ${auto.precio * auto.cantidad}</h3>
+            </div>
+        </div>    
+
+    </div>
+        
+        
+    <div class="inputs-calcular-container">
+        <div class="div-card button-calcular-container">
+            <input id="inputCuotas" type="number" name="cantidadCuotas" placeholder="Ingrese la cantidad de cuotas">
+            <button type="submit" id="calcular">Calcular</button>
+        </div>
+    </div>
+
+    <div class="div-card cuota-calculada">
+        <h3 class="tittle-card-carrito">Precio cuota</h3>
+        <h3 class="auto-prop">$ ${cuota}</h3>
+    </div>
+</div>
+    `
 }
 
 function retornarFormularioTarjetaCredito(totaal){
@@ -239,33 +354,6 @@ function retornarBotonesCart(){
     `
 }
 
-function activarBotonIrAPagar(){
-    const botonIrAPagar = document.querySelector(".comprar-button")
-    const carritoContainer = document.querySelector(".cart-container-container")
-    const botonesCart = document.querySelector(".botones-cart")
-    const segundoPaso = document.querySelector(".segundo-paso")
-    const divisorPasos = document.querySelector(".linea")
-    const contenedorCarrito = document.querySelector(".section-cart")
-
-    let contadorTotal = 0
-    botonIrAPagar.addEventListener("click", ()=>{
-        for(let auto of carrito){
-            contadorTotal += auto.precio * auto.cantidad
-        }
-        console.log(contadorTotal)
-        carritoContainer.innerHTML = ""
-        carritoContainer.innerHTML += retornarFormularioTarjetaCredito(contadorTotal)
-        carritoContainer.classList += " cart-container-formulario"
-        botonesCart.innerHTML = ""
-        botonesCart.innerHTML += retornarBotonesCart()
-        botonesCart.classList += " botones-cart-form"
-        segundoPaso.classList += " posicion-carrito"
-        divisorPasos.classList += " posicion-carrito"
-        contenedorCarrito.classList += " section-cart-form"
-        activarBotonCompra()
-    })
-}
-
 function activarBotonCompra(){
     const botonCompra = document.querySelector("#confirmar-compra")
     botonCompra.addEventListener("click", ()=>{
@@ -279,8 +367,40 @@ function activarBotonCompra(){
           });
     })}
 
+function reemplazarHTMLParaFormularioPago(contador){
+    const carritoContainer = document.querySelector(".cart-container-container")
+    const botonesCart = document.querySelector(".botones-cart")
+    const segundoPaso = document.querySelector(".segundo-paso")
+    const divisorPasos = document.querySelector(".linea")
+    const contenedorCarrito = document.querySelector(".section-cart")
+
+    carritoContainer.innerHTML = ""
+    carritoContainer.innerHTML += retornarFormularioTarjetaCredito(contador)
+    carritoContainer.classList += " cart-container-formulario"
+    botonesCart.innerHTML = ""
+    botonesCart.innerHTML += retornarBotonesCart()
+    botonesCart.classList += " botones-cart-form"
+    segundoPaso.classList += " posicion-carrito"
+    divisorPasos.classList += " posicion-carrito"
+    contenedorCarrito.classList += " section-cart-form"
+}
+
+function activarBotonIrAPagar(){
+    const botonIrAPagar = document.querySelector(".comprar-button")
+
+    let contadorTotal = 0
+    botonIrAPagar.addEventListener("click", ()=>{
+        for(let auto of carrito){
+            contadorTotal += auto.precio * auto.cantidad
+        }
+        reemplazarHTMLParaFormularioPago(contadorTotal)
+        activarBotonCompra()
+    })
+}
+
+
 function activarScrollNav(){
-    const nav = document.querySelector(".nav-container")
+    const nav = document.querySelector(".nav")
     window.addEventListener("scroll", ()=>{
         nav.classList.toggle("nav-scroll", window.scrollY>0)
     })
@@ -296,7 +416,6 @@ function actualizarCarrito(){
         actualizarHTMLProductosCarrito()
         activarBotonBorrar()
         activarBotonIrAPagar()
-        // activarBotonCompra()
         activarBotonFinanciador()
     }
     else{

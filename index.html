@@ -15,30 +15,21 @@
 </head>
 
 <body>
-
-    <section class="nav-container">
-        <div class="nav">
+    <div class="nav">
             <div class="titulo-nav">
                 <h1>Tu %0 KM</h1>
             </div>
-            <div class="menues-nav">
-                <div class="menu">
-                    <ul class="listMenu">
-                        <li class="modelos list-item"><a class="link-menu" href="#filtros">Modelos</a></li>
-                        <li class="contacto list-item"><a href="#portada" class="link-menu">Contacto</a></li>
-                    </ul>
-                </div>
-                <div class="buscador">
-                    
-                </div>
-                <div class="carrito" id="numeroCarrito">
-                    <a href="carrito.html">Mi carrito <i class="fa-solid fa-cart-shopping"></i><span></span></a>
-                </div>
+            <button class="abrir-menu" id="abrir"><i class="fa-solid fa-bars"></i></button>
+            <div class="menu">
+                <button class="cerrar-menu" id="cerrar"><i class="fa-regular fa-circle-xmark simbolo-salir"></i></button>
+                <ul class="listMenu">
+                    <li class="modelos list-item"><a class="link-menu" href="#filtros">Modelos</a></li>
+                    <li class="contacto list-item"><a href="#portada" class="link-menu">Contacto</a></li>
+                    <li class="contacto list-item" id="numeroCarrito"><a href="html/carrito.html"><i class="fa-solid fa-cart-shopping carrito"></i><span></span></a></li>
+                </ul>
             </div>
-            
-        </div>
+    </div>
         
-    </section>
 
     <section class="portada-container">
         <div class="portada">
@@ -49,49 +40,57 @@
     </section>
 
     <section class="main">
-        <div class="filtrosContainer-Container">
+        <!-- <div class="filtrosContainer-Container"> -->
             <div class="filtrosContainer" id="filtros">
-                <div class="input-filtro filtrosBTN">
-                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                    <input class="buscador-filtro filtrosBTN" type="text" placeholder="Buscá por nombre...">
+                <div class="botonDesplegar-container">
+                    <button id="desplegarFiltros">Refiná tu búsqueda</button>
                 </div>
-                <div class="filtrosMarca">
-                    <select name="Marca" id="selectorMarcas" class="opciones-marca form-select filtrosBTN">
-                        <option value="" disabled selected>Elegí marca</option>
-                        <option value="Fiat">Fiat</option>
-                        <option value="Peugeot">Peugeot</option>
-                        <option value="Vw">Vw</option>
-                        <option value="Toyota">Toyota</option>
-                    </select>
-                </div>
-                <div class="rango-precio-container">
-                    <div class="min-container range-wraper">
-                        <div class="field-min field">
-                            <span>Min</span>
-                            <input type="number" class="input-min filtrosBTN" value="500000">
+                <div class="filtrosDesplegable">
+                    <div class="botonCerrar-container">
+                        <button id="cerrarFiltros"><i class="fa-regular fa-circle-xmark simbolo-salir"></i></button>
+                    </div>
+                    <div class="input-filtro filtrosBTN">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input class="buscador-filtro filtrosBTN" type="text" placeholder="Buscá por nombre...">
+                    </div>
+                    <div class="filtrosMarca">
+                        <select name="Marca" id="selectorMarcas" class="opciones-marca form-select filtrosBTN">
+                            <option value="" disabled selected>Elegí marca</option>
+                            <option value="Fiat">Fiat</option>
+                            <option value="Peugeot">Peugeot</option>
+                            <option value="Vw">Vw</option>
+                            <option value="Toyota">Toyota</option>
+                        </select>
+                    </div>
+                    <div class="rango-precio-container">
+                        <div class="min-container range-wraper">
+                            <div class="field-min field">
+                                <span>Min</span>
+                                <input type="number" class="input-min filtrosBTN" value="500000">
+                            </div>
+                            <div class="slider-min slider">
+                                <input type="range" step="100000" class="range-min" min="200000" max="4999999" value="500000">
+                            </div>
                         </div>
-                        <div class="slider-min slider">
-                            <input type="range" step="100000" class="range-min filtrosBTN" min="200000" max="4999999" value="500000">
+                        <div class="max-container range-wraper">
+                            <div class="field-max field">
+                                <span>Max</span>
+                                <input type="number" class="input-max filtrosBTN" value="5000000">
+                            </div>
+                            <div class="slider-max slider">
+                                <input type="range" step="100000" class="range-max" min="5000000" max="9500000" value="7000000">
+                            </div>
                         </div>
                     </div>
-                    <div class="max-container range-wraper">
-                        <div class="field-max field">
-                            <span>Max</span>
-                            <input type="number" class="input-max filtrosBTN" value="5000000">
-                        </div>
-                        <div class="slider-max slider">
-                            <input type="range" step="100000" class="range-max" min="5000000" max="9500000" value="7000000">
-                        </div>
+                    <div class="limpiarFiltros-container">
+                        <button class="limpiar-filtro filtrosBTN" type="submit">Limpiar filtros</button>
                     </div>
-                </div>
-                <div class="limpiarFiltros-container">
-                    <button class="limpiar-filtro filtrosBTN" type="submit">Limpiar filtros</button>
-                </div>
-                <div class="submit-filtroContainer">
-                    <button class="submit-filtro filtrosBTN" type="submit">Buscar</button>
+                    <div class="submit-filtroContainer">
+                        <button class="submit-filtro filtrosBTN" type="submit">Buscar</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
 
         <div class="autos-container">
 

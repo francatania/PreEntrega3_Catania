@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./css/style.css">
-    <script defer src="./js/checkout.js"></script>
-    <script src="./js/variables.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <script defer src="../js/checkout.js"></script>
+    <script src="../js/variables.js"></script>
     <title>Carrito</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
     <section class="nav-container">
         <div class="nav">
             <div class="titulo-nav">
-                <a href="index.html"><h1>Tu %0 KM</h1></a>
+                <a href="../index.html"><h1>Tu %0 KM</h1></a>
             </div>
             <div class="menues-nav">
                 <div class="menu">
@@ -41,14 +41,15 @@
         </div>
     </section>
 
-    <section class="guia-carrito">
-        <div class="primer-paso">
-            <div class="primer-paso-logo"><h3 class="h3-pasos">Ver tu carrito</h3></div>
-        </div>
-        <div class="divisor"><div class="linea"></div></div>
-        <div class="segundo-paso"><h3 class="h3-pasos">Pagar</h3></div>
-    </section>
-
+    <div class="guia-container">
+        <section class="guia-carrito">
+            <div class="primer-paso">
+                <div class="primer-paso-logo"><h3 class="h3-pasos">Ver tu carrito</h3></div>
+            </div>
+            <div class="divisor"><div class="linea"></div></div>
+            <div class="segundo-paso"><h3 class="h3-pasos">Pagar</h3></div>
+        </section>
+    </div>
     <section class="section-cart">
         <!-- <div class="cart-title">
             <h2>Tu carrito</h2>
@@ -61,7 +62,7 @@
  
         <div class="botones-cart">
             <div class="volver-container">
-                <a href="index.html"><button class="volver-button">Seguir comprando</button></a>
+                <a href="../index.html"><button class="volver-button">Seguir comprando</button></a>
             </div>
             <div class="comprar-container">
                 <button class="comprar-button">Ir a pagar</button>
@@ -75,7 +76,6 @@
 </body>
 
 </html>
-
 
 
 

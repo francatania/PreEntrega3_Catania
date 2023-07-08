@@ -1,4 +1,3 @@
-
 const autosContainer = document.querySelector(".autos-container")
 const numeroCart = document.querySelector(".carrito")
 const botonBuscar = document.querySelector(".submit-filtro")
@@ -44,7 +43,12 @@ function retornarErrorFiltro(){
 }
 
 function retornarNumeroCarrito(numeroCarrito){
-    return `<a href="carrito.html"><i class="fa-solid fa-cart-shopping"></i><span> (${numeroCarrito})</span></a>`
+    return `<a href="html/carrito.html"><i class="fa-solid fa-cart-shopping"></i><span> (${numeroCarrito})</span></a>`
+}
+
+function actualizarHTMLNumeroCarrito(elemento, numero){
+    elemento.innerHTML = ""
+    elemento.innerHTML += retornarNumeroCarrito(numero)
 }
 
 function hacerNumeroCarritoDinamico(carrito){
@@ -53,8 +57,7 @@ function hacerNumeroCarritoDinamico(carrito){
     for (item of carrito){
         contador += item.cantidad
     }
-    numCarrito.innerHTML = ""
-    numCarrito.innerHTML += retornarNumeroCarrito(contador)
+    actualizarHTMLNumeroCarrito(numCarrito, contador)
 }
 
 function aumentarCantidadAuto(id){
@@ -85,21 +88,6 @@ function avisarProductoAgregadoCarrito(){
       }).showToast();
 }
 
-function activarSliderPrecios(){
-    const inputPrecioMin = document.querySelector(".input-min")
-    const inputPrecioMax = document.querySelector(".input-max")
-    const sliderMin = document.querySelector(".range-min")
-    const sliderMax = document.querySelector(".range-max")
-
-    sliderMin.addEventListener("input", ()=>{
-        inputPrecioMin.value = sliderMin.value
-    })
-
-    sliderMax.addEventListener("input", ()=>{
-        inputPrecioMax.value = sliderMax.value
-    })
-}
-
 function mostrarProductos(){
     autosContainer.innerHTML = ""
     autos.length > 0 ? autos.forEach((auto) => autosContainer.innerHTML += retornarCard(auto)) : autosContainer.innerHTML += retornarError()
@@ -125,7 +113,22 @@ function mostrarProductosFiltrados(array){
     activarBotones(array)
 }
 
-function activarFiltros(){
+function activarSliderPrecios(){
+    const inputPrecioMin = document.querySelector(".input-min")
+    const inputPrecioMax = document.querySelector(".input-max")
+    const sliderMin = document.querySelector(".range-min")
+    const sliderMax = document.querySelector(".range-max")
+
+    sliderMin.addEventListener("input", ()=>{
+        inputPrecioMin.value = sliderMin.value
+    })
+
+    sliderMax.addEventListener("input", ()=>{
+        inputPrecioMax.value = sliderMax.value
+    })
+}
+
+function buscarAutos(){
     botonBuscar.addEventListener("click", ()=>{
         const autosFiltrados = autos.filter(auto => {
             if(barraBuscadora.value === "" && selectorMarcas.value === ""){
@@ -137,7 +140,9 @@ function activarFiltros(){
         })
         mostrarProductosFiltrados(autosFiltrados)
     })
+}
 
+function limpiarFiltrosFuncion(){
     limpiarFiltros.addEventListener("click", ()=>{
         mostrarProductos()
         sliderMin.value = 200000
@@ -147,6 +152,11 @@ function activarFiltros(){
         selectorMarcas.value = ""
         barraBuscadora.value = ""
     })
+}
+
+function activarFiltros(){
+    buscarAutos()
+    limpiarFiltrosFuncion()
 }
 
 function activarBotones(array){
@@ -182,11 +192,44 @@ function activarFormulario(){
 }
 
 function activarScrollNav(){
-    const nav = document.querySelector(".nav-container")
+    const nav = document.querySelector(".nav")
     window.addEventListener("scroll", ()=>{
         nav.classList.toggle("nav-scroll", window.scrollY>0)
     })
 }
+
+function activarMenuHamburguesa(){
+    const botonAbrirMenu = document.querySelector("#abrir")
+    const botonCerrarMenu = document.querySelector("#cerrar")
+    const menuContainer = document.querySelector(".menu")
+
+    botonAbrirMenu.addEventListener("click", ()=>{
+        menuContainer.classList.add("menu-visible")
+    })
+
+    botonCerrarMenu.addEventListener("click", ()=>{
+        menuContainer.classList.remove("menu-visible")
+    })
+}
+
+function activarMenuFiltrosDesplegable(){
+    const btnDesplegar = document.querySelector("#desplegarFiltros")
+    const divFiltros = document.querySelector(".filtrosDesplegable")
+    const btnCerrar = document.querySelector("#cerrarFiltros")
+    const filtrosContainer = document.querySelector(".filtrosContainer")
+
+    btnDesplegar.addEventListener("click", ()=>{
+        divFiltros.classList.add("filtrosDesplegable-activado")
+        filtrosContainer.classList.add("filtrosContainer-desplegado")
+    })
+
+    btnCerrar.addEventListener("click", ()=>{
+        divFiltros.classList.remove("filtrosDesplegable-activado")
+        filtrosContainer.classList.remove("filtrosContainer-desplegado")
+    })
+
+}
+
 
 function iniciarWeb(){
     obtenerProductosAsync()
@@ -195,6 +238,8 @@ function iniciarWeb(){
     activarFiltros()
     activarScrollNav()
     activarFormulario()
+    activarMenuHamburguesa()
+    activarMenuFiltrosDesplegable()
 }
 
 iniciarWeb()
