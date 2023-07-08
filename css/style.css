@@ -112,7 +112,7 @@ a{
 
 .nav-scroll{
     background-color: var(--color-main-dark);
-    z-index: 99999;
+    z-index: 9999999999999999999999999999;
 }
 
 
@@ -373,6 +373,10 @@ input[type="number"]{
     justify-content: space-between;
 }
 
+.card-error-cart h2{
+    margin: auto;
+}
+
 .card-error-autosContainer{
     grid-column: 1/4;
     overflow: hidden;
@@ -604,7 +608,7 @@ footer {
 }
 
 .segundo-paso{
-    background-color: var(--color-white-darker);
+    background-color: var(--color-white);
     height: 50px;
     display: flex;
     align-items: center;
@@ -614,9 +618,9 @@ footer {
     text-align: center;
     justify-content: center;
     border-radius: 30px;
-    opacity: 50%;
     border: var(--color-main-dark) 1px solid;
 }
+
 
 .h3-pasos{
     font-size: 18px;
@@ -631,7 +635,6 @@ h1, h2, h3 {
     background-color: #001011;
     height: 3px;
     width: 200px;
-    opacity: 20%;
 }
 
 .divisor{
@@ -641,7 +644,7 @@ h1, h2, h3 {
 }
 
 .posicion-carrito{
-    opacity: 100%;
+    background-color: var(--color-white-darker);
 }
 
 
@@ -651,7 +654,7 @@ h1, h2, h3 {
 }
 
 .section-cart-form{
-    height: 900px;
+    height: 800px;
 }
 
 .cart-container-container{
@@ -680,9 +683,10 @@ h1, h2, h3 {
 }
 
 .cart-container-formulario{
-    height: 750px!important;
+    height: 700px;
     overflow: hidden;
 }
+
 
 .card-carrito{
     display: flex;
@@ -1052,6 +1056,110 @@ h1, h2, h3 {
         width: 90%;
         margin: auto;
     }
+
+    .cart-container-container{
+        width: 100%;
+    }
+
+    .cart-container{
+        width: 100%;
+    }
+
+    .card-carrito{
+        flex-direction: column;
+        height: 200px;
+        gap: 0px;
+        justify-content: space-around;
+        align-items: center;
+        width: 400px;
+    }
+
+    .info-cart{
+        display: flex;
+        justify-content: center;
+        gap: 0px;
+        width: 400px;
+        height: 140px;
+    }
+
+    .img-card-carrito{
+        height: 100%;
+        width: 200px;
+        margin: 0px;
+    }
+
+    .img-nombre{
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        width: 200px;
+        justify-content: space-around;
+    }
+    
+    .cantidad-precio{
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        width: 140px;
+        justify-content: space-around;
+    }
+    
+    .financiador-salir{
+        display: flex;
+        gap: 0px;
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .cart-buttons-container{
+        width: 100%;
+        justify-content: space-around;
+    }
+    
+    .precio-input{
+        display: flex;
+        gap: 50px;
+    }
+
+    .nombre-precio{
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        width: 150px;
+    }
+
+    .nombre-precio h3{
+        font-size: 13px;
+    }
+
+    .nombre-precio .auto-prop{
+        font-size: 16px;
+    }
+
+    .inputs-calcular-container{
+        display: flex;
+        gap: 10px;
+        width: 400px;
+        margin-left: 50px;
+    }
+
+    .button-calcular-container{
+        width: 200px;
+        margin-left: 40px;
+    }
+
+    #calcular{
+        width: 110px;
+    }
+
+    .cuota-calculada{
+       margin-left: 20px;
+        width: 100px;
+    }
+
+    .cuota-calculada .auto-prop{
+        font-size: 15px;
+    }
     
 
 }
@@ -1144,6 +1252,105 @@ h1, h2, h3 {
     .card-error-h4{
         font-size: 14px;
     }
+
+    .cart-container-container{
+        width: 90%;
+    }
+
+    .card-carrito{
+        flex-direction: column;
+        height: 200px;
+        gap: 0px;
+        justify-content: space-around;
+        align-items: center;
+        width: 400px;
+    }
+
+    .info-cart{
+        display: flex;
+        justify-content: space-between;
+        gap: 0px;
+        width: 300px;
+    }
+
+    .img-card-carrito{
+        height: 100%;
+        width: 200px;
+        margin: 0px;
+    }
+
+    .img-nombre{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 200px;
+        justify-content: space-around;
+    }
+    
+    .cantidad-precio{
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        width: 140px;
+        justify-content: space-around;
+    }
+
+    .cantidad-precio h3{
+        font-size: 14px;
+    }
+
+    .cantidad-precio .auto-prop{
+        font-size: 16px;
+    }
+    
+    .financiador-salir{
+        display: flex;
+        gap: 0px;
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .cart-buttons-container{
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .precio-input{
+        display: flex;
+        gap: 50px;
+    }
+
+    .nombre-precio{
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        width: 150px;
+    }
+
+    .nombre-precio h3{
+        font-size: 13px;
+    }
+
+    .nombre-precio .auto-prop{
+        font-size: 16px;
+    }
+
+    .inputs-calcular-container{
+        display: flex;
+        gap: 10px;
+        width: 400px;
+        margin-left: 50px;
+    }
+
+    .button-calcular-container{
+        width: 200px;
+        margin-left: 80px;
+    }
+
+    .cuota-calculada{
+       margin-left: 0px;
+        width: 100px;
+    }
     
 }
 
@@ -1223,6 +1430,50 @@ h1, h2, h3 {
         gap: 20px;
         height: 140px;
     }
+
+    .formulario-pago{
+        width: 90%;
+    }
+
+    .campos-pago-datos-tarjeta{
+        flex-direction: column;
+    }
+
+    .inputs-datos-tarjeta{
+        width: 100%;
+    }
+
+    .inputs-fecha-vencimiento{
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .ultimos-campos{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .comprar-button{
+        width: 100px;
+        font-size: 15px;
+    }
+
+    .volver-button{
+        width: 100px;
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    .section-cart-form{
+        height: 1000px;
+    }
+
+    .cart-container-formulario{
+        height: 900px;
+        overflow: hidden;
+    }
+    
 }
 
 @media only screen and (min-width:751px) and (max-width:900px) {
@@ -1277,6 +1528,77 @@ h1, h2, h3 {
     
     .contacto-background{
         width: 90%;
+    }
+
+    .cart-container-container{
+        width: 90%;
+    }
+    .card-carrito{
+        flex-direction: column;
+        height: 300px;
+        gap: 0px;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .info-cart{
+        display: flex;
+        justify-content: center;
+        gap: 0px;
+        width: 500px;
+    }
+
+    .img-card-carrito{
+        height: 100%;
+        width: 300px;
+        margin: auto;
+    }
+
+    .img-nombre{
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        width: 100%;
+        justify-content: space-around;
+    }
+    
+    .cantidad-precio{
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        width: 100%;
+        justify-content: space-around;
+    }
+    
+    .financiador-salir{
+        display: flex;
+        gap: 0px;
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .cart-buttons-container{
+        width: 100%;
+        justify-content: space-around;
+    }
+    
+    .precio-input{
+        display: flex;
+        gap: 50px;
+    }
+
+    .nombre-precio{
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        width: 300px;
+    }
+
+    .inputs-calcular-container{
+        display: flex;
+        justify-content: flex-end;
+        width: 400px;
+        margin-left: 190px;
     }
 }
 
@@ -1338,28 +1660,6 @@ h1, h2, h3 {
     .cart-container-container{
         width: 90%;
     }
-
-    /* .card-carrito{
-        gap: 0px;
-    }
-
-    .img-card-carrito{
-        height: 100%;
-        margin: auto;
-    }
-
-    .name-producto{
-        width: 200px;
-    }
-
-    .cantidad{
-        width: 100px;
-    }
-
-    .tittle-card-carrito{
-        font-size: 14px;
-    } */
-
     .card-carrito{
         flex-direction: column;
         height: 300px;

@@ -5,7 +5,6 @@ function recuperarLS(){
 const carrito = recuperarLS()
 const URL = "js/datos.json"
 
-// const autosFiltrados = []
 
 const autos = []
 

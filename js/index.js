@@ -82,7 +82,8 @@ function avisarProductoAgregadoCarrito(){
         stopOnFocus: true, 
         style: {
           background: "#21C063",
-          zIndex: 9999999999999999
+          zIndex: 9999999999999999,
+          fontSize: "12px",
         },
         toastClassName: "toast-index"
       }).showToast();

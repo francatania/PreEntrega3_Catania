@@ -19,30 +19,6 @@ class Financiador {
     }
 }
 
-// function retornarFilaCarrito(auto){
-//     return `<div class="card-carrito">
-//                 <div class="img-card-carrito">
-//                     <img class="imgCarrito" src=".${auto.imagen}" alt="">
-//                 </div>
-//                 <div class="name-producto div-card">
-//                     <h3 class="tittle-card-carrito" >Nombre Auto</h3>
-//                     <h3 class="auto-prop">${auto.marca} ${auto.nombre}</h3>
-//                 </div>
-//                 <div class="cantidad div-card">
-//                     <h3 class="tittle-card-carrito" >Cantidad</h3>
-//                     <h3 class="auto-prop">${auto.cantidad}</h3>
-//                 </div>
-//                 <div class="precio div-card">
-//                     <h3 class="tittle-card-carrito" >Monto</h3>
-//                     <h3 class="auto-prop">$ <span class="total-precio">${auto.precio * auto.cantidad}</span></h3>
-//                 </div>
-//                 <div class="div-card cart-buttons-container">
-//                     <button id="${auto.id}" class="financiador-button cart-buttons">Calcular financiamiento</button>
-//                     <button class="borrar cart-buttons" id="${auto.id}"><h3 class="borrar-h3">❌</h3></button>
-//                 </div>
-//             </div>`
-// }
-
 function retornarFilaCarrito(auto){
     return `
     <div class="card-carrito">
@@ -83,29 +59,6 @@ function retornarFilaCarrito(auto){
     `
 }
 
-// function retornarFormularioFinanciador(auto){
-//     return `<div class="card-carrito">
-//                 <div class="img-card-carrito">
-//                 <img class="imgCarrito" src=".${auto.imagen}" alt=""></div>
-//                 <div class="name-producto div-card">
-//                     <h3 class="tittle-card-carrito" >Nombre Auto</h3>
-//                     <h3 class="auto-prop">${auto.marca} ${auto.nombre}</h3>
-//                 </div>
-//                 <div class="precio div-card">
-//                     <h3 class="tittle-card-carrito" >Monto</h3>
-//                     <h3 class="auto-prop">$ ${auto.precio * auto.cantidad}</h3>
-//                 </div>
-//                 <div class="div-card button-calcular-container">
-//                     <input id="inputCuotas" type="number" name="cantidadCuotas" placeholder="Ingrese la cantidad de cuotas">
-//                     <button type="submit" id="calcular">Calcular</button>
-//                 </div>
-//                 <div class="div-card cuota-calculada">
-//                     <h3 class="tittle-card-carrito">Precio cuota</h3>
-//                     <h3 class="auto-prop">$0</h3>
-//                 </div>
-//             </div>`
-// }
-
 function retornarFormularioFinanciador(auto){
     return `
     <div class="card-carrito">
@@ -144,29 +97,6 @@ function retornarFormularioFinanciador(auto){
     `
 }
 
-// function retornarFormularioFinanciadorCalculado(auto, cuota){
-//     return `<div class="card-carrito">
-//                 <div class="img-card-carrito">
-//                 <img class="imgCarrito" src=".${auto.imagen}" alt=""></div>
-//                 <div class="name-producto div-card">
-//                     <h3 class="tittle-card-carrito" >Nombre Auto</h3>
-//                     <h3 class="auto-prop">${auto.marca} ${auto.nombre}</h3>
-//                 </div>
-//                 <div class="precio div-card">
-//                     <h3 class="tittle-card-carrito" >Monto</h3>
-//                     <h3 class="auto-prop">$ ${auto.precio * auto.cantidad}</h3>
-//                 </div>
-//                 <div class="div-card button-calcular-container">
-//                     <input id="inputCuotas" type="number" name="cantidadCuotas" placeholder="Ingrese la cantidad de cuotas">
-//                     <button type="submit" id="calcular">Calcular</button>
-//                 </div>
-//                 <div class="div-card cuota-calculada">
-//                     <h3 class="tittle-card-carrito">Precio cuota</h3>
-//                     <h3 class="auto-prop">$ ${cuota}</h3>
-//                 </div>
-//             </div>`
-// }
-
 function retornarFormularioFinanciadorCalculado(auto, cuota){
     return `
     <div class="card-carrito">
@@ -194,12 +124,13 @@ function retornarFormularioFinanciadorCalculado(auto, cuota){
             <input id="inputCuotas" type="number" name="cantidadCuotas" placeholder="Ingrese la cantidad de cuotas">
             <button type="submit" id="calcular">Calcular</button>
         </div>
+        <div class="div-card cuota-calculada">
+            <h3 class="tittle-card-carrito">Precio cuota</h3>
+            <h3 class="auto-prop">$ ${cuota}</h3>
+        </div>
     </div>
 
-    <div class="div-card cuota-calculada">
-        <h3 class="tittle-card-carrito">Precio cuota</h3>
-        <h3 class="auto-prop">$ ${cuota}</h3>
-    </div>
+
 </div>
     `
 }
@@ -251,7 +182,7 @@ function retornarFormularioTarjetaCredito(totaal){
         </div>
 
 
-        <div class="mb-3 campos-pago">
+        <div class="mb-3 campos-pago ultimos-campos">
             <div class="mb-3 inputs-tarjeta">
                 <label for="exampleFormControlInput1" class="form-label">Cantidad de cuotas</label>
                 <input type="number" class="form-control" id="exampleFormControlInput3" placeholder="Escribi las cuotas">
@@ -267,9 +198,8 @@ function retornarFormularioTarjetaCredito(totaal){
 }
 
 function retornarCardCarritoVacio(){
-    return `<div class="card-error">
-                <h2>🔍</h2>
-                <h2>No hay productos en el carrito por el momento</h2>
+    return `<div class="card-error card-error-cart">
+                <h2 class="card-error-h2">No hay productos en el carrito por el momento</h2>
             </div>`
 }
 
